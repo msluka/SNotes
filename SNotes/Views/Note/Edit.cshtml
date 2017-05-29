@@ -1,0 +1,17 @@
+﻿@model SNotes.ViewModels.EditNoteViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Note"))
+{
+    <div class="form-group">
+
+        @Html.TextAreaFor(m => m.Content, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Notes.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}

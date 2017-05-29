@@ -1,0 +1,34 @@
+﻿@using SNotes.Models
+@model IEnumerable<SNotes.ViewModels.NoteGridViewModel>
+
+@{
+    ViewBag.Title = "SNotes";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SNotes</h2>
+<h5>@Html.ActionLink("Create New Note", "Create", "Note", null)</h5>
+<div class="notesListContainer">
+    <ul style="list-style-type: none;">
+        
+        @foreach (var note in Model)
+        {
+            <li style="float: left">
+
+                <div class="noteBox">
+                    <div class="noteTitle">Title</div>
+                    @Html.DisplayFor(n => note.Content)
+                    <div class="noteFooter">
+                        @Html.ActionLink("Edit", "Edit", "Note", new { id = note.Id }, null)
+
+                        @Html.ActionLink("Delete", "Delete", "Note", new { id = note.Id }, null)
+                    </div>
+                </div>
+
+            </li>
+        }
+    </ul>
+</div>

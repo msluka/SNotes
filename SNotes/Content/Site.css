@@ -22,3 +22,32 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.noteBox {
+    height: 150px; 
+    width: 150px; 
+    border: solid 2px gray;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    position: relative;
+    
+}
+
+.notesListContainer {
+    display: inline-block;
+    width: 800px;
+    background: orange;
+   
+}
+
+.noteTitle {
+    
+}
+
+.noteFooter {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+
+}
