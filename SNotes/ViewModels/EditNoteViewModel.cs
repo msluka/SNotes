@@ -9,6 +9,8 @@ namespace SNotes.ViewModels
     public class EditNoteViewModel
     {
         public string Content { get; set; }
-        public Note Notes { get; set; }
+        public long Id { get; set; }
+        public DateTime ModificationTime { get; set; }
+
     }
 }

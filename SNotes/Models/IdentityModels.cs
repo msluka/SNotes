@@ -21,6 +21,9 @@ namespace SNotes.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Note> Notes { get; set; }
+        public DbSet<Label> Labels { get; set; }
+        
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

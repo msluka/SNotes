@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #e8e8e8;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,21 +24,26 @@ textarea {
     max-width: 280px;
 }
 
+.noteList-list-horizontal{
+    float: left;
+}
+
+
+
 .noteBox {
-    height: 150px; 
-    width: 150px; 
-    border: solid 2px gray;
-    border-radius: 10px;
+    height: 200px; 
+    width: 200px; 
     margin: 5px;
     padding: 5px;
     position: relative;
+    background: white;
+    box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;
     
 }
 
 .notesListContainer {
     display: inline-block;
-    width: 800px;
-    background: orange;
+    
    
 }
 
@@ -48,6 +54,27 @@ textarea {
 .noteFooter {
     position: absolute;
     bottom: 0;
-    left: 50%;
+    display: inline-block;
+}
 
+.button-link {
+    background-color: transparent;
+    border: none;
+}
+
+.button-link:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.mySearchBox {
+    margin-top: 12px;
+    margin-left: 30px;
+    width: 200px;
+}
+
+#SearchString {
+    width: 200px;
+    border-radius: 5px;
+    
 }

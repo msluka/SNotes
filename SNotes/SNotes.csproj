@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabelController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -206,11 +207,37 @@
     <Compile Include="Migrations\201705291150417_InitialMigration.Designer.cs">
       <DependentUpon>201705291150417_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705301332136_AddCreationTime.cs" />
+    <Compile Include="Migrations\201705301332136_AddCreationTime.Designer.cs">
+      <DependentUpon>201705301332136_AddCreationTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705301353262_AddModificationTime.cs" />
+    <Compile Include="Migrations\201705301353262_AddModificationTime.Designer.cs">
+      <DependentUpon>201705301353262_AddModificationTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705311409194_AddingLabelClassWithManyToManyRelationship.cs" />
+    <Compile Include="Migrations\201705311409194_AddingLabelClassWithManyToManyRelationship.Designer.cs">
+      <DependentUpon>201705311409194_AddingLabelClassWithManyToManyRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705311551507_reparing.cs" />
+    <Compile Include="Migrations\201705311551507_reparing.Designer.cs">
+      <DependentUpon>201705311551507_reparing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705312101514_DropLabelTabel.cs" />
+    <Compile Include="Migrations\201705312101514_DropLabelTabel.Designer.cs">
+      <DependentUpon>201705312101514_DropLabelTabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705312256505_AddManyToManyRelationshipNoteLabels.cs" />
+    <Compile Include="Migrations\201705312256505_AddManyToManyRelationshipNoteLabels.Designer.cs">
+      <DependentUpon>201705312256505_AddManyToManyRelationshipNoteLabels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Label.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\NoteLabels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddNoteViewModel.cs" />
@@ -279,6 +306,10 @@
     <Content Include="Views\Note\Create.cshtml" />
     <Content Include="Views\Note\Edit.cshtml" />
     <Content Include="Views\Note\NoteList.cshtml" />
+    <Content Include="Views\Shared\_labelListPartial.cshtml" />
+    <Content Include="Views\Label\LabelList.cshtml" />
+    <Content Include="Views\Label\Create.cshtml" />
+    <Content Include="Views\Label\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -294,6 +325,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705291150417_InitialMigration.resx">
       <DependentUpon>201705291150417_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301332136_AddCreationTime.resx">
+      <DependentUpon>201705301332136_AddCreationTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301353262_AddModificationTime.resx">
+      <DependentUpon>201705301353262_AddModificationTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311409194_AddingLabelClassWithManyToManyRelationship.resx">
+      <DependentUpon>201705311409194_AddingLabelClassWithManyToManyRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311551507_reparing.resx">
+      <DependentUpon>201705311551507_reparing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312101514_DropLabelTabel.resx">
+      <DependentUpon>201705312101514_DropLabelTabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312256505_AddManyToManyRelationshipNoteLabels.resx">
+      <DependentUpon>201705312256505_AddManyToManyRelationshipNoteLabels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SNotes.Models;
 using SNotes.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace SNotes.Controllers
 {
@@ -17,6 +18,8 @@ namespace SNotes.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
+
         // GET: Note
         public ActionResult Index()
         {
@@ -25,15 +28,23 @@ namespace SNotes.Controllers
 
         public ActionResult NoteList()
         {
+            var memberId = User.Identity.GetUserId();
+            if (memberId == null)
+                return RedirectToAction("Login", "Account");
 
-            var allNotes = _context.Notes.Select(n => new NoteGridViewModel
-            {
-                Content = n.Content,
-                Id = n.Id
+            var userNotes = _context.Notes.Where(n => n.UserId == memberId)
+                .Select(n => new NoteGridViewModel
+                {
+                    Content = n.Content,
+                    Id = n.Id,
+                    CreationTime = n.CreationTime,
+                    ModificationTime = n.ModificationTime
 
-            });
+                });
 
-            return View(allNotes);
+            
+            return View(userNotes);
+            
         }
 
         [HttpGet]
@@ -43,8 +54,18 @@ namespace SNotes.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Note note)
+        public ActionResult Create(AddNoteViewModel model)
         {
+            var memberId = User.Identity.GetUserId();
+            var note = new Note()
+            {
+                UserId = memberId,
+                Content = model.Content,
+                CreationTime = DateTime.Now,
+                ModificationTime = DateTime.Now
+
+            };
+
             _context.Notes.Add(note);
             _context.SaveChanges();
 
@@ -61,33 +82,106 @@ namespace SNotes.Controllers
 
             var viewModel = new EditNoteViewModel
             {
-                Content = note.Content
+                Content = note.Content,
+                Id = note.Id,
 
             };
-            return View("Edit", viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(Note note)
+        public ActionResult Edit(EditNoteViewModel model)
         {
-            _context.Notes.AddOrUpdate(note);
+
+            var note = _context.Notes.Single(x => x.Id == model.Id);
+            note.ModificationTime = DateTime.Now;
+            note.Content = model.Content;
             _context.SaveChanges();
 
             return RedirectToAction("NoteList", "Note");
         }
 
-
-        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
+        [HttpPost]
         public ActionResult Delete(long id)
         {
-
-            var note = _context.Notes.SingleOrDefault(n => n.Id == id);
-
-            _context.Notes.Remove(note);
+            var customer = _context.Notes.Single(x => x.Id == id);
+            _context.Notes.Remove(customer);
             _context.SaveChanges();
 
-            return RedirectToAction("NoteList");
+            return RedirectToAction("NoteList", "Note");
+        }
+        //[AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
+        //public ActionResult Delete(long id)
+        //{
 
+        //    var note = _context.Notes.SingleOrDefault(n => n.Id == id);
+
+        //    _context.Notes.Remove(note);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("NoteList");
+
+        //}
+
+        public ActionResult Search(string searchString)
+        {
+            var memberId = User.Identity.GetUserId();
+            if (memberId == null)
+                return RedirectToAction("Login", "Account");
+
+
+            var searchResult = _context.Notes.Where(n => n.UserId == memberId && n.Content.Contains(searchString))
+                   .Select(n => new NoteGridViewModel
+                   {
+                       Content = n.Content,
+                       Id = n.Id,
+                       CreationTime = n.CreationTime,
+                       ModificationTime = n.ModificationTime
+
+                   });
+
+            return View("NoteList", searchResult);
+
+        }
+
+        public ActionResult Sort(string sortOrder)
+        {
+            var memberId = User.Identity.GetUserId();
+            if (memberId == null)
+                return RedirectToAction("Login", "Account");
+
+            if (sortOrder == "Number1")
+            {
+                var searchResult = _context.Notes.Where(n => n.UserId == memberId)
+                    .Select(n => new NoteGridViewModel
+                    {
+                        Content = n.Content,
+                        Id = n.Id,
+                        CreationTime = n.CreationTime,
+                        ModificationTime = n.ModificationTime
+
+                    }).OrderByDescending(n => n.CreationTime);
+
+                return View("NoteList", searchResult);
+
+            }
+
+            if (sortOrder == "Number2")
+            {
+                var searchResult = _context.Notes.Where(n => n.UserId == memberId)
+                    .Select(n => new NoteGridViewModel
+                    {
+                        Content = n.Content,
+                        Id = n.Id,
+                        CreationTime = n.CreationTime,
+                        ModificationTime = n.ModificationTime
+
+                    }).OrderBy(n => n.ModificationTime);
+
+                return View("NoteList", searchResult);
+            }
+
+            return View("NoteList");
         }
     }
 }

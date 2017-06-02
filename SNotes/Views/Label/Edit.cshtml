@@ -1,0 +1,19 @@
+﻿@model SNotes.Models.Label
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>New Label</h2>
+ 
+    @using(Html.BeginForm("Edit", "Label"))
+    { 
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+        
+        </div>
+    
+        <button type="submit" class="btn btn-default">Submit</button>
+    }
+

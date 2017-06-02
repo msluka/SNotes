@@ -1,5 +1,7 @@
 ﻿@using SNotes.Models
+
 @model IEnumerable<SNotes.ViewModels.NoteGridViewModel>
+
 
 @{
     ViewBag.Title = "SNotes";
@@ -9,26 +11,76 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SNotes</h2>
-<h5>@Html.ActionLink("Create New Note", "Create", "Note", null)</h5>
-<div class="notesListContainer">
-    <ul style="list-style-type: none;">
-        
-        @foreach (var note in Model)
-        {
-            <li style="float: left">
+<div class="row">
+    <div class="col-xs-3 col-md-2">
+       
+        @{Html.RenderAction("LabelList", "Label"); }
+        @*@Html.Partial("_LoginPartial")*@
 
-                <div class="noteBox">
-                    <div class="noteTitle">Title</div>
-                    @Html.DisplayFor(n => note.Content)
-                    <div class="noteFooter">
-                        @Html.ActionLink("Edit", "Edit", "Note", new { id = note.Id }, null)
+    </div>
 
-                        @Html.ActionLink("Delete", "Delete", "Note", new { id = note.Id }, null)
-                    </div>
-                </div>
+    <div class="col-xs-6 col-md-8">
 
-            </li>
-        }
-    </ul>
+
+        <h2>SNotes</h2>
+        <h5>@Html.ActionLink("Create New Note", "Create", "Note", null)</h5>
+        <div class="notesListContainer">
+            <ul style="list-style-type: none;">
+
+                @foreach (var note in Model)
+                {
+                    <li class="noteList-list-horizontal">
+
+                        <div class="noteBox">
+                            <div class="noteTitle">Title</div>
+                            @Html.DisplayFor(n => note.Content)
+                            <div class="noteFooter">
+                                <div>
+                                    @if (note.ModificationTime == note.CreationTime ||
+ note.ModificationTime < note.CreationTime)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(n => note.ModificationTime)
+                                    }
+                                </div>
+                                <div>
+                                    @Html.DisplayFor(n => note.CreationTime)
+                                </div>
+                                <div style="display: inline-flex;">
+                                    @*@Html.ActionLink("Edit", "Edit", "Note", new { id = note.Id }, null)
+                                
+                                
+                                    @using (Html.BeginForm("Delete", "Note"))
+                                    {
+                                        <input type="hidden" name="id" value="@note.Id" id="id" />
+                                        <input type="submit" value="Delete" class="btn-link" />
+                                    }*@
+                                    
+                                    <a href="@Url.Action("Edit", "Note", new {id = note.Id}, null)">
+                                        <span class="glyphicon glyphicon-pencil" style="color: #555555; font-size: 12px; padding: 0 5px 0 10px;"></span>
+                                    </a>
+
+                                    @using (Html.BeginForm("Delete", "Note"))
+                                    {
+                                        <input type="hidden" name="id" value="@note.Id" id="id" style="display: none;" />
+                    
+                                        <button type="submit" class="btn btn-link" style="padding: 0 0 0 5px;">
+                                            <span class="glyphicon glyphicon-trash" style="color:#555555; font-size: 12px;"></span>
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="col-xs-3 col-md-2">    Test Test Test Test Test Test  Test Test Test Test Test Test   </div>
 </div>

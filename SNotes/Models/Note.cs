@@ -10,5 +10,10 @@ namespace SNotes.Models
         public long Id { get; set; }
         public string Content { get; set; }
         public string UserId { get; set; }
+        public DateTime CreationTime { get; set; }
+        public DateTime ModificationTime { get; set; }
+        public virtual IList<Label> Labels { get; set; }
+
     }
+    
 }

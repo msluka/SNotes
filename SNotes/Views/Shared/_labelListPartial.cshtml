@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SNotes.Models.Label>
+
+<h2>Labels</h2>
+@*<p>@Html.ActionLink("Create New Label", "Create", "Label", null, null)</p>*@
+
+
+<ul style="list-style: none;">
+    <li>
+        
+        <a href="@Url.Action("Create", "Label", null, null)">
+            <span class="glyphicon glyphicon-plus-sign" style="color: #555555; font-size: 20px; padding: 0 20px 0 0;"></span>
+        </a>
+    </li>
+    <span>&nbsp</span>
+    @foreach (var label in Model)
+    {
+        <li>
+            @*<div>@label.Name   @Html.ActionLink("Edit", "Edit", "Label", new { id = label.Id }, null)</div>*@
+            <div style="display: inline-flex;">
+                <span class="glyphicon glyphicon-tag" style="padding: 0 20px 0 0;"></span>
+                @label.Name
+
+
+                <a href="@Url.Action("Edit", "Label", new {id = label.Id}, null)">
+                    <span class="glyphicon glyphicon-pencil" style="color: #555555; font-size: 12px; padding: 0 5px 0 10px;"></span>
+                </a>
+
+                @using (Html.BeginForm("Delete", "Label"))
+                {
+                    <input type="hidden" name="id" value="@label.Id" id="id" style="display: none;" />
+                    @*<input type="submit" value="Delete" class="btn-link" />*@
+                    <button type="submit" class="btn btn-link" style="padding: 0 0 0 5px;">
+                        <span class="glyphicon glyphicon-trash" style="color:#555555; font-size: 12px;"></span>
+                    </button>
+                }
+
+
+            </div>
+        </li>
+    }
+</ul>

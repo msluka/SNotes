@@ -1,0 +1,10 @@
+﻿@model IEnumerable<SNotes.Models.Label>
+
+<h2>Labels</h2>
+
+@foreach (var label in Model)
+{
+    <ul>
+        <li>@label.Name</li>
+    </ul>
+}
