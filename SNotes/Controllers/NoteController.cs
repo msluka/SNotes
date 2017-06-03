@@ -185,5 +185,38 @@ namespace SNotes.Controllers
 
             return View("NoteList");
         }
+
+        [HttpGet]
+        public ActionResult AddLabelToNote(long id)
+        {
+            var model = new AddLabelToNoteViewModel
+            {
+                NoteId = id
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddLabelToNote(AddLabelToNoteViewModel model)
+        {
+            
+            var note = _context.Notes.Single(x => x.Id == model.NoteId);
+
+            var label = new Label
+            {
+                Name = model.Name,
+                UserId = User.Identity.GetUserId()
+                
+            };
+            
+            //label.Notes.Add(note);
+            _context.Labels.Add(label);
+
+            note.Labels.Add(label);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("NoteList", "Note");
+        }
     }
 }

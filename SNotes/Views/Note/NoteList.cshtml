@@ -81,7 +81,11 @@
                                             <input type="hidden" name="id" value="@note.Id" id="id" />
                                             <input type="submit" value="Delete" class="btn-link" />
                                         }*@
-
+                                   
+                                        <a href="@Url.Action("AddLabelToNote", "Note", new {id = note.Id}, null)">
+                                            <span class="glyphicon glyphicon-plus-sign" style="color: #555555; font-size: 12px; padding: 0 5px 0 0;"></span>
+                                        </a>
+                                    
                                     <a href="@Url.Action("Edit", "Note", new {id = note.Id}, null)">
                                         <span class="glyphicon glyphicon-pencil" style="color: #555555; font-size: 12px; padding: 0 5px 0 10px;"></span>
                                     </a>

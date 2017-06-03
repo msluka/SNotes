@@ -7,13 +7,13 @@ namespace SNotes.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DropLabelTabel : IMigrationMetadata
+    public sealed partial class addUserIdToLabelTabel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DropLabelTabel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addUserIdToLabelTabel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705312101514_DropLabelTabel"; }
+            get { return "201706031025104_addUserIdToLabelTabel"; }
         }
         
         string IMigrationMetadata.Source

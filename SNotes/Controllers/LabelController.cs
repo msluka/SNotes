@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -34,6 +35,11 @@ namespace SNotes.Controllers
         public ActionResult LabelList()
         {
             var memberId = User.Identity.GetUserId();
+
+
+            //var labels = _context.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
+
+            var labels = _context.Labels.Where(x => x.UserId == memberId).ToList();
             
 
             //var employees = db.Employees.Where(emp => emp.role.Any(r => r.Id == 12));
@@ -41,8 +47,6 @@ namespace SNotes.Controllers
 
             //var labels = _context.Labels.Include(l => l.Notes.Select(x => x.UserId == memberId)).ToList();
 
-
-            var labels = _context.Labels.ToList();
             
 
             return View("_labelListPartial", labels);
@@ -55,17 +59,15 @@ namespace SNotes.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Label label)
+        public ActionResult Create(Label model)
         {
-            //var memberId = User.Identity.GetUserId();
-            //var note = new Note()
-            //{
-            //    UserId = memberId,
-            //    Content = model.Content,
-            //    CreationTime = DateTime.Now,
-            //    ModificationTime = DateTime.Now
-
-            //};
+            var memberId = User.Identity.GetUserId();
+            var label= new Label()
+            {
+                UserId = memberId,
+                Name = model.Name
+                
+            };
 
             _context.Labels.AddOrUpdate(label);
             _context.SaveChanges();

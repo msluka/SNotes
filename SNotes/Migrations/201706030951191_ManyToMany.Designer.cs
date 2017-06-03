@@ -7,13 +7,13 @@ namespace SNotes.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddManyToManyRelationshipNoteLabels : IMigrationMetadata
+    public sealed partial class ManyToMany : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddManyToManyRelationshipNoteLabels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ManyToMany));
         
         string IMigrationMetadata.Id
         {
-            get { return "201705312256505_AddManyToManyRelationshipNoteLabels"; }
+            get { return "201706030951191_ManyToMany"; }
         }
         
         string IMigrationMetadata.Source
