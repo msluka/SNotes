@@ -12,20 +12,42 @@
 }
 
 <div class="row">
-    <div class="col-xs-3 col-md-2">
-       
+    <div class="col-md-3">
+
         @{Html.RenderAction("LabelList", "Label"); }
         @*@Html.Partial("_LoginPartial")*@
 
     </div>
 
-    <div class="col-xs-6 col-md-8">
 
+    <div class="col-md-8">
 
-        <h2>SNotes</h2>
-        <h5>@Html.ActionLink("Create New Note", "Create", "Note", null)</h5>
         <div class="notesListContainer">
             <ul style="list-style-type: none;">
+                <li>
+                    <div style="display: flex;">
+                        <div>
+                            <h2>SNotes</h2>
+                        </div>
+                        <div style="margin: 25px 0 0 10px;">
+                            <a href="@Url.Action("Create", "Note", null, null)">
+                                <span class="glyphicon glyphicon-plus-sign" style="color: #555555; font-size: 20px; padding: 0 20px 0 0;"></span>
+                            </a>
+                        </div>
+
+                    </div>
+                </li>
+
+                @using (Html.BeginForm("Search", "Note"))
+                {
+                    <span class="searchBox">
+                        @Html.TextBox("searchString")
+                    </span>
+
+                    <button type="submit" class="btn btn-link" style="padding: 0 0 0 5px;">
+                        <span class="glyphicon glyphicon-search" style="color: #555555; font-size: 12px;"></span>
+                    </button>
+                }
 
                 @foreach (var note in Model)
                 {
@@ -35,30 +57,31 @@
                             <div class="noteTitle">Title</div>
                             @Html.DisplayFor(n => note.Content)
                             <div class="noteFooter">
-                                <div>
+                                <div style="text-align: left;">
                                     @if (note.ModificationTime == note.CreationTime ||
- note.ModificationTime < note.CreationTime)
+                     note.ModificationTime < note.CreationTime)
                                     {
-
+                                        <div style="display: none"></div>
                                     }
                                     else
                                     {
+                                        <text>Edited </text>
                                         @Html.DisplayFor(n => note.ModificationTime)
                                     }
                                 </div>
                                 <div>
-                                    @Html.DisplayFor(n => note.CreationTime)
+                                    <text>Created </text> @Html.DisplayFor(n => note.CreationTime)
                                 </div>
-                                <div style="display: inline-flex;">
+                                <div style="display: inline-flex; text-align: right;">
                                     @*@Html.ActionLink("Edit", "Edit", "Note", new { id = note.Id }, null)
-                                
-                                
-                                    @using (Html.BeginForm("Delete", "Note"))
-                                    {
-                                        <input type="hidden" name="id" value="@note.Id" id="id" />
-                                        <input type="submit" value="Delete" class="btn-link" />
-                                    }*@
-                                    
+
+
+                                        @using (Html.BeginForm("Delete", "Note"))
+                                        {
+                                            <input type="hidden" name="id" value="@note.Id" id="id" />
+                                            <input type="submit" value="Delete" class="btn-link" />
+                                        }*@
+
                                     <a href="@Url.Action("Edit", "Note", new {id = note.Id}, null)">
                                         <span class="glyphicon glyphicon-pencil" style="color: #555555; font-size: 12px; padding: 0 5px 0 10px;"></span>
                                     </a>
@@ -66,11 +89,13 @@
                                     @using (Html.BeginForm("Delete", "Note"))
                                     {
                                         <input type="hidden" name="id" value="@note.Id" id="id" style="display: none;" />
-                    
+
                                         <button type="submit" class="btn btn-link" style="padding: 0 0 0 5px;">
-                                            <span class="glyphicon glyphicon-trash" style="color:#555555; font-size: 12px;"></span>
+                                            <span class="glyphicon glyphicon-trash" style="color: #555555; font-size: 12px;"></span>
                                         </button>
                                     }
+
+
                                 </div>
                             </div>
                         </div>
@@ -82,5 +107,5 @@
         </div>
     </div>
 
-    <div class="col-xs-3 col-md-2">    Test Test Test Test Test Test  Test Test Test Test Test Test   </div>
+    <div class="col-md-1">     </div>
 </div>

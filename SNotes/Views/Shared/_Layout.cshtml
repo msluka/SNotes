@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background: #e30074; color: #ffffff; height: 65px;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background: #e20074; color: #ffffff; height: 65px;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,15 +26,7 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    <li>
-                        @using (Html.BeginForm("Search", "Note"))
-                        {
-                            <span class="mySearchBox">
-                                @Html.TextBox("SearchString")
-                            </span>
-                            <input type="submit" value="Search" class="btn btn-link" />
-                        }
-                    </li>
+                    
                     <li>
                         @using (Html.BeginForm("Sort", "Note"))
                         {
@@ -59,7 +51,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - SNotes</p>
         </footer>
     </div>
 

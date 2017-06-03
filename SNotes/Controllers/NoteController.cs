@@ -40,7 +40,8 @@ namespace SNotes.Controllers
                     CreationTime = n.CreationTime,
                     ModificationTime = n.ModificationTime
 
-                });
+                })
+                .OrderByDescending(o => o.CreationTime);
 
             
             return View(userNotes);
@@ -160,6 +161,7 @@ namespace SNotes.Controllers
                         CreationTime = n.CreationTime,
                         ModificationTime = n.ModificationTime
 
+                        //}).OrderByDescending(n => n.CreationTime);
                     }).OrderByDescending(n => n.CreationTime);
 
                 return View("NoteList", searchResult);

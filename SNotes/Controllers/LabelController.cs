@@ -40,12 +40,10 @@ namespace SNotes.Controllers
             //var xx = db.Produtos.Include(x => x.Aplicacoes.Select(y => y.Produtos)).ToList()
 
             //var labels = _context.Labels.Include(l => l.Notes.Select(x => x.UserId == memberId)).ToList();
-            
+
 
             var labels = _context.Labels.ToList();
-
             
-                
 
             return View("_labelListPartial", labels);
         }
@@ -104,7 +102,7 @@ namespace SNotes.Controllers
             _context.Labels.Remove(label);
             _context.SaveChanges();
 
-            return RedirectToAction("LabelList", "Label");
+            return RedirectToAction("Notelist", "Note");
         }
     }
 }

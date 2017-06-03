@@ -237,7 +237,6 @@
     <Compile Include="Models\Label.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\NoteLabels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddNoteViewModel.cs" />
