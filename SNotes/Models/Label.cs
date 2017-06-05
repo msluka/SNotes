@@ -7,11 +7,6 @@ namespace SNotes.Models
 {
     public class Label
     {
-        public Label()
-        {
-            Notes = new List<Note>();
-        }
-
         public long Id { get; set; }
         public string Name { get; set; }
         public string UserId { get; set; }

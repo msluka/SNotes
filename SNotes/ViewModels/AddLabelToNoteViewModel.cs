@@ -7,7 +7,7 @@ namespace SNotes.ViewModels
 {
     public class AddLabelToNoteViewModel
     {
-        public string Name { get; set; }
+        public string LabelName { get; set; }
         public long NoteId { get; set; }
     }
 }

@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201706031025104_addUserIdToLabelTabel.Designer.cs">
       <DependentUpon>201706031025104_addUserIdToLabelTabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706042132282_AddTitlePropertyToNoteModel.cs" />
+    <Compile Include="Migrations\201706042132282_AddTitlePropertyToNoteModel.Designer.cs">
+      <DependentUpon>201706042132282_AddTitlePropertyToNoteModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -311,6 +315,8 @@
     <Content Include="Views\Label\Create.cshtml" />
     <Content Include="Views\Label\Edit.cshtml" />
     <Content Include="Views\Note\AddLabelToNote.cshtml" />
+    <Content Include="Views\Note\DisplayTemplates\NoteGridViewModel.cshtml" />
+    <Content Include="Views\Note\DisplayTemplates\Label.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706031025104_addUserIdToLabelTabel.resx">
       <DependentUpon>201706031025104_addUserIdToLabelTabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706042132282_AddTitlePropertyToNoteModel.resx">
+      <DependentUpon>201706042132282_AddTitlePropertyToNoteModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

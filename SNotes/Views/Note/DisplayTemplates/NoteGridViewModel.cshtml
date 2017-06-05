@@ -1,0 +1,88 @@
+﻿@model SNotes.ViewModels.NoteGridViewModel
+    
+
+<li class="noteList-list-horizontal" style="float: left;">
+
+    <div class="noteBox" style="padding: 0; height: 200px;
+                                                                                                                    width: 200px; margin: 5px; position: relative; background: white;
+                                                                                                                    box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;">
+        @if (Model.Title != null)
+        {
+            <div class="noteTitle" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px;">
+
+                @Html.DisplayFor(n =>n.Title)
+
+
+            </div>
+        }
+        <div class="noteContent" style="padding: 5px; overflow: hidden;  height: 66%">
+            @Html.DisplayFor(n => n.Content)
+        </div>
+        <ul>
+            @Html.DisplayFor(m => m.Labels)
+        </ul>
+
+        <div class="noteFooter" style="min-width: 100%; display: inline-block; position: absolute; bottom: 0;">
+
+            <div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>
+
+            <div class="time" style="text-align: left; padding: 5px; text-align: right; display: none;">
+                @if (Model.ModificationTime == Model.CreationTime || Model.ModificationTime < Model.CreationTime)
+                {
+                    <div style="display: none"></div>
+                }
+                else
+                {
+                    <text>Edited </text>
+                    @Html.DisplayFor(n => n.ModificationTime)
+
+                }
+                <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => n.CreationTime)
+            </div>
+            @*<div>
+                                                <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => note.CreationTime)
+
+                                            </div>*@
+            <div class="footerIcons" style="display:flex; margin-left: auto; background: #e20074; color: #fdffff; min-width: 100%; padding: 5px 5px 0 5px;">
+                @*@Html.ActionLink("Edit", "Edit", "Note", new { id = note.Id }, null)
+
+
+                                                @using (Html.BeginForm("Delete", "Note"))
+                                                {
+                                                    <input type="hidden" name="id" value="@note.Id" id="id" />
+                                                    <input type="submit" value="Delete" class="btn-link" />
+                                                }*@
+                <div>
+                    @Model.CreationTime.ToString("d MMM yyyy")
+                </div>
+                <div>
+                    <a href="@Url.Action("AddLabelToNote", "Note", new {id = Model.Id}, null)">
+                        <span class="glyphicon glyphicon-tag" style="color: #fdffff; font-size: 12px; padding: 0 10px 0 45px;"></span>
+                    </a>
+                </div>
+                <div>
+                    <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
+                        <span class="glyphicon glyphicon-pencil" style="color: #fdffff; font-size: 12px; padding: 0 10px 0 0;"></span>
+                    </a>
+                </div>
+                <div>
+                    @using (Html.BeginForm("Delete", "Note"))
+                    {
+                        <input type="hidden" name="id" value="@Model.Id" id="id" style="display: none;" />
+
+                        <button type="submit" class="btn btn-link" style="padding: 0;">
+                            <span class="glyphicon glyphicon-trash" style="color: #fdffff; font-size: 12px;"></span>
+                        </button>
+                    }
+                </div>
+                <div>
+                    <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
+                        <span class="glyphicon glyphicon-th-list" style="color: #fdffff; font-size: 12px; padding: 0 0px 0 10px;"></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</li>

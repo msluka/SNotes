@@ -9,7 +9,7 @@
 @using (Html.BeginForm("Edit", "Note"))
 {
     <div class="form-group">
-
+        @Html.TextBoxFor(m=>m.Title)
         @Html.TextAreaFor(m => m.Content, new { @class = "form-control" })
     </div>
     @Html.HiddenFor(m => m.Id)

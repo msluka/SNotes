@@ -105,6 +105,27 @@ namespace SNotes.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Notelist", "Note");
+           
         }
+
+        public ActionResult GetLabelListForNote()
+        {
+            var memberId = User.Identity.GetUserId();
+
+            var labels = _context.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
+
+            //var labels = _context.Labels.Where(x => x.UserId == memberId).ToList();
+
+
+            //var employees = db.Employees.Where(emp => emp.role.Any(r => r.Id == 12));
+            //var xx = db.Produtos.Include(x => x.Aplicacoes.Select(y => y.Produtos)).ToList()
+
+            //var labels = _context.Labels.Include(l => l.Notes.Select(x => x.UserId == memberId)).ToList();
+
+
+
+            return View("_labelListForNotePartial", labels);
+        }
+
     }
 }

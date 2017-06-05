@@ -35,13 +35,16 @@ namespace SNotes.Controllers
             var userNotes = _context.Notes.Where(n => n.UserId == memberId)
                 .Select(n => new NoteGridViewModel
                 {
+                    Title = n.Title,
                     Content = n.Content,
                     Id = n.Id,
                     CreationTime = n.CreationTime,
-                    ModificationTime = n.ModificationTime
+                    ModificationTime = n.ModificationTime,
+                    Labels = n.Labels.ToList()
 
                 })
-                .OrderByDescending(o => o.CreationTime);
+                .OrderByDescending(o => o.CreationTime)
+                .ToList();
 
             
             return View(userNotes);
@@ -60,7 +63,9 @@ namespace SNotes.Controllers
             var memberId = User.Identity.GetUserId();
             var note = new Note()
             {
+                
                 UserId = memberId,
+                Title = model.Title,
                 Content = model.Content,
                 CreationTime = DateTime.Now,
                 ModificationTime = DateTime.Now
@@ -83,6 +88,7 @@ namespace SNotes.Controllers
 
             var viewModel = new EditNoteViewModel
             {
+                Title = note.Title,
                 Content = note.Content,
                 Id = note.Id,
 
@@ -96,6 +102,7 @@ namespace SNotes.Controllers
 
             var note = _context.Notes.Single(x => x.Id == model.Id);
             note.ModificationTime = DateTime.Now;
+            note.Title = model.Title;
             note.Content = model.Content;
             _context.SaveChanges();
 
@@ -132,14 +139,16 @@ namespace SNotes.Controllers
 
 
             var searchResult = _context.Notes.Where(n => n.UserId == memberId && n.Content.Contains(searchString))
-                   .Select(n => new NoteGridViewModel
-                   {
-                       Content = n.Content,
-                       Id = n.Id,
-                       CreationTime = n.CreationTime,
-                       ModificationTime = n.ModificationTime
+                .Select(n => new NoteGridViewModel
+                {
+                    Title = n.Title,
+                    Content = n.Content,
+                    Id = n.Id,
+                    CreationTime = n.CreationTime,
+                    ModificationTime = n.ModificationTime
 
-                   });
+                })
+                .OrderByDescending(n => n.CreationTime);
 
             return View("NoteList", searchResult);
 
@@ -153,9 +162,10 @@ namespace SNotes.Controllers
 
             if (sortOrder == "Number1")
             {
-                var searchResult = _context.Notes.Where(n => n.UserId == memberId)
+                var sortResult = _context.Notes.Where(n => n.UserId == memberId)
                     .Select(n => new NoteGridViewModel
                     {
+                        Title = n.Title,
                         Content = n.Content,
                         Id = n.Id,
                         CreationTime = n.CreationTime,
@@ -164,23 +174,24 @@ namespace SNotes.Controllers
                         //}).OrderByDescending(n => n.CreationTime);
                     }).OrderByDescending(n => n.CreationTime);
 
-                return View("NoteList", searchResult);
+                return View("NoteList", sortResult);
 
             }
-
+             
             if (sortOrder == "Number2")
             {
-                var searchResult = _context.Notes.Where(n => n.UserId == memberId)
+                var sortResult = _context.Notes.Where(n => n.UserId == memberId)
                     .Select(n => new NoteGridViewModel
                     {
+                        Title = n.Title,
                         Content = n.Content,
                         Id = n.Id,
                         CreationTime = n.CreationTime,
                         ModificationTime = n.ModificationTime
 
-                    }).OrderBy(n => n.ModificationTime);
+                    }).OrderByDescending(n => n.ModificationTime);
 
-                return View("NoteList", searchResult);
+                return View("NoteList", sortResult);
             }
 
             return View("NoteList");
@@ -204,7 +215,7 @@ namespace SNotes.Controllers
 
             var label = new Label
             {
-                Name = model.Name,
+                Name = model.LabelName,
                 UserId = User.Identity.GetUserId()
                 
             };
@@ -218,5 +229,7 @@ namespace SNotes.Controllers
 
             return RedirectToAction("NoteList", "Note");
         }
+
+
     }
 }
