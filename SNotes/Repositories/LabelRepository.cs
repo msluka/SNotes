@@ -23,8 +23,6 @@ namespace SNotes.Repositories
         {
             var memberId = HttpContext.Current.User.Identity.GetUserId();
 
-            var labels = _dbContext.Labels.Where(x => x.UserId == memberId).ToList();
-
             return _dbContext.Labels.Where(n => n.UserId == memberId)
                 .Select(n => new LabelGridViewModel()
                 {

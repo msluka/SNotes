@@ -216,37 +216,9 @@
     <Compile Include="Infrastructure\Controllersinstaller.cs" />
     <Compile Include="Infrastructure\ServicesInstaller.cs" />
     <Compile Include="Infrastructure\WindsorConrtollerFactory.cs" />
-    <Compile Include="Migrations\201705291150417_InitialMigration.cs" />
-    <Compile Include="Migrations\201705291150417_InitialMigration.Designer.cs">
-      <DependentUpon>201705291150417_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705301332136_AddCreationTime.cs" />
-    <Compile Include="Migrations\201705301332136_AddCreationTime.Designer.cs">
-      <DependentUpon>201705301332136_AddCreationTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705301353262_AddModificationTime.cs" />
-    <Compile Include="Migrations\201705301353262_AddModificationTime.Designer.cs">
-      <DependentUpon>201705301353262_AddModificationTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705311409194_AddingLabelClassWithManyToManyRelationship.cs" />
-    <Compile Include="Migrations\201705311409194_AddingLabelClassWithManyToManyRelationship.Designer.cs">
-      <DependentUpon>201705311409194_AddingLabelClassWithManyToManyRelationship.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705311551507_reparing.cs" />
-    <Compile Include="Migrations\201705311551507_reparing.Designer.cs">
-      <DependentUpon>201705311551507_reparing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706030951191_ManyToMany.cs" />
-    <Compile Include="Migrations\201706030951191_ManyToMany.Designer.cs">
-      <DependentUpon>201706030951191_ManyToMany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706031025104_addUserIdToLabelTabel.cs" />
-    <Compile Include="Migrations\201706031025104_addUserIdToLabelTabel.Designer.cs">
-      <DependentUpon>201706031025104_addUserIdToLabelTabel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706042132282_AddTitlePropertyToNoteModel.cs" />
-    <Compile Include="Migrations\201706042132282_AddTitlePropertyToNoteModel.Designer.cs">
-      <DependentUpon>201706042132282_AddTitlePropertyToNoteModel.cs</DependentUpon>
+    <Compile Include="Migrations\201706061309252_firstMigration.cs" />
+    <Compile Include="Migrations\201706061309252_firstMigration.Designer.cs">
+      <DependentUpon>201706061309252_firstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -350,29 +322,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705291150417_InitialMigration.resx">
-      <DependentUpon>201705291150417_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705301332136_AddCreationTime.resx">
-      <DependentUpon>201705301332136_AddCreationTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705301353262_AddModificationTime.resx">
-      <DependentUpon>201705301353262_AddModificationTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705311409194_AddingLabelClassWithManyToManyRelationship.resx">
-      <DependentUpon>201705311409194_AddingLabelClassWithManyToManyRelationship.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705311551507_reparing.resx">
-      <DependentUpon>201705311551507_reparing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706030951191_ManyToMany.resx">
-      <DependentUpon>201706030951191_ManyToMany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706031025104_addUserIdToLabelTabel.resx">
-      <DependentUpon>201706031025104_addUserIdToLabelTabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706042132282_AddTitlePropertyToNoteModel.resx">
-      <DependentUpon>201706042132282_AddTitlePropertyToNoteModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706061309252_firstMigration.resx">
+      <DependentUpon>201706061309252_firstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,7 +1,7 @@
-﻿@model IEnumerable<SNotes.Models.Label>
+﻿@model  IEnumerable<SNotes.ViewModels.LabelGridViewModel>
 
 <h2>Labels</h2>
-@*<p>@Html.ActionLink("Create New Label", "Create", "Label", null, null)</p>*@
+
 
 
 <ul style="list-style: none;">
@@ -15,7 +15,7 @@
     @foreach (var label in Model)
     {
         <li>
-            @*<div>@label.Name   @Html.ActionLink("Edit", "Edit", "Label", new { id = label.Id }, null)</div>*@
+           
             <div style="display: inline-flex;">
                 <span class="glyphicon glyphicon-tag" style="padding: 0 10px 0 0; color: #e20074"></span>
                
@@ -28,7 +28,7 @@
                 @using (Html.BeginForm("Delete", "Label"))
                 {
                     <input type="hidden" name="id" value="@label.Id" id="id" style="display: none;" />
-                    @*<input type="submit" value="Delete" class="btn-link" />*@
+              
                     <button type="submit" class="btn btn-link" style="padding: 0 10px 0 5px;">
                         <span class="glyphicon glyphicon-trash" style="color:#555555; font-size: 12px;"></span>
                     </button>

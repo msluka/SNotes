@@ -37,7 +37,7 @@ namespace SNotes.Controllers
         {
             var labels = _repository.GetLabelList();
 
-            return View(labels);
+            return View("_labelListPartial", labels);
 
             //var memberId = User.Identity.GetUserId();
 

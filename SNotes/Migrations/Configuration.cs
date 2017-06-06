@@ -5,14 +5,14 @@ namespace SNotes.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SNotes.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SNotes.DAL.SNotesContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(SNotes.Models.ApplicationDbContext context)
+        protected override void Seed(SNotes.DAL.SNotesContext context)
         {
             //  This method will be called after migrating to the latest version.
 
