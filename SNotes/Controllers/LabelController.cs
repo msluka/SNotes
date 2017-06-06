@@ -35,7 +35,7 @@ namespace SNotes.Controllers
 
         public ActionResult LabelList()
         {
-            var labels = _repository.GetLabelList();
+            var labels = _repository.GetLabelList(User.Identity.GetUserId());
 
             return View("_labelListPartial", labels);
 

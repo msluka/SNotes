@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc.Html;
 using Microsoft.AspNet.Identity;
 using SNotes.DAL;
 using SNotes.Models;
@@ -163,7 +164,7 @@ namespace SNotes.Repositories
             };
             
             _dbContext.Labels.Add(label);
-
+           
             note.Labels.Add(label);
 
             _dbContext.SaveChanges();

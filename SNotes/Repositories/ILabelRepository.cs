@@ -6,7 +6,7 @@ namespace SNotes.Repositories
 {
     public interface ILabelRepository
     {
-        IEnumerable<LabelGridViewModel> GetLabelList();
+        IEnumerable<LabelGridViewModel> GetLabelList(string userId);
         void Save(AddLabelViewModel model);
         EditLabelViewModel Get(long id);
         void Update(EditLabelViewModel model);

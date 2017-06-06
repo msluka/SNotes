@@ -13,7 +13,7 @@ namespace SNotes.Models
         public string UserId { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime ModificationTime { get; set; }
-        public virtual IList<Label> Labels { get; set; }
+        public virtual IList<Label> Labels { get; set; } = new List<Label>();
 
     }
     

@@ -19,14 +19,16 @@ namespace SNotes.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<LabelGridViewModel> GetLabelList()
+        public IEnumerable<LabelGridViewModel> GetLabelList(string userId)
         {
-            var memberId = HttpContext.Current.User.Identity.GetUserId();
+            //var memberId = HttpContext.Current.User.Identity.GetUserId();
 
-            return _dbContext.Labels.Where(n => n.UserId == memberId)
+            return _dbContext.Labels.Where(n => n.UserId == userId)
                 .Select(n => new LabelGridViewModel()
                 {
                     Name = n.Name,
+                    Id = n.Id,
+                    UserId = n.UserId
                    
                 }).ToList();
 
