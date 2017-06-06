@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using SNotes.Models;
+using SNotes.Repositories;
 using SNotes.ViewModels;
 
 namespace SNotes.Controllers
@@ -21,110 +22,122 @@ namespace SNotes.Controllers
             return View();
         }
 
-        private ApplicationDbContext _context;
+        private readonly ILabelRepository _repository;
 
-        public LabelController()
+        public LabelController(ILabelRepository repository)
         {
-            _context = new ApplicationDbContext();
+            _repository = repository;
         }
 
 
         // GET: Note
-        
+
 
         public ActionResult LabelList()
         {
-            var memberId = User.Identity.GetUserId();
+            var labels = _repository.GetLabelList();
 
+            return View(labels);
 
-            //var labels = _context.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
+            //var memberId = User.Identity.GetUserId();
 
-            var labels = _context.Labels.Where(x => x.UserId == memberId).ToList();
-            
+            //var labels = _context.Labels.Where(x => x.UserId == memberId).ToList();
 
-            //var employees = db.Employees.Where(emp => emp.role.Any(r => r.Id == 12));
-            //var xx = db.Produtos.Include(x => x.Aplicacoes.Select(y => y.Produtos)).ToList()
-
-            //var labels = _context.Labels.Include(l => l.Notes.Select(x => x.UserId == memberId)).ToList();
-
-            
-
-            return View("_labelListPartial", labels);
+            //return View("_labelListPartial", labels);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            var model = new AddLabelViewModel();
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(Label model)
+        public ActionResult Create(AddLabelViewModel model)
         {
-            var memberId = User.Identity.GetUserId();
-            var label= new Label()
+            if (ModelState.IsValid)
             {
-                UserId = memberId,
-                Name = model.Name
-                
-            };
+                _repository.Save(model);
+                return RedirectToAction("NoteList", "Note");
+            }
 
-            _context.Labels.AddOrUpdate(label);
-            _context.SaveChanges();
+            return View(model);
 
-            return RedirectToAction("NoteList", "Note");
+
+            //var memberId = User.Identity.GetUserId();
+            //var label= new Label()
+            //{
+            //    Name = model.Name,
+            //    UserId = memberId
+            //};
+
+            //_context.Labels.AddOrUpdate(label);
+            //_context.SaveChanges();
+
+            //return RedirectToAction("NoteList", "Note");
         }
 
         [HttpGet]
         public ActionResult Edit(long id)
         {
-            var label = _context.Labels.SingleOrDefault(l => l.Id == id);
-            if (label == null)
+            var model = _repository.Get(id);
+            return View(model);
 
-                return HttpNotFound();
             
-            return View("Edit", label);
+            //var label = _context.Labels.SingleOrDefault(l => l.Id == id);
+            //if (label == null)
+
+            //    return HttpNotFound();
+
+            //return View("Edit", label);
         }
 
         [HttpPost]
-        public ActionResult Edit(Label model)
+        public ActionResult Edit(EditLabelViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                _repository.Update(model);
+                return RedirectToAction("Notelist", "Note");
+            }
 
-            var label = _context.Labels.Single(l => l.Id == model.Id);
-            label.Name = model.Name;
-            _context.SaveChanges();
+            return View(model);
 
-            return RedirectToAction("NoteList", "Note");
+            //var label = _context.Labels.Single(l => l.Id == model.Id);
+            //label.Name = model.Name;
+            //_context.SaveChanges();
+
+            //return RedirectToAction("NoteList", "Note");
         }
 
         [HttpPost]
         public ActionResult Delete(long id)
         {
-            var label = _context.Labels.Single(x => x.Id == id);
-            _context.Labels.Remove(label);
-            _context.SaveChanges();
+            _repository.Delete(id);
 
-            return RedirectToAction("Notelist", "Note");
+            return RedirectToAction("NoteList", "Note");
+
+            //var label = _context.Labels.Single(x => x.Id == id);
+            //_context.Labels.Remove(label);
+            //_context.SaveChanges();
+
+            //return RedirectToAction("Notelist", "Note");
            
         }
 
         public ActionResult GetLabelListForNote()
         {
-            var memberId = User.Identity.GetUserId();
 
-            var labels = _context.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
-
-            //var labels = _context.Labels.Where(x => x.UserId == memberId).ToList();
-
-
-            //var employees = db.Employees.Where(emp => emp.role.Any(r => r.Id == 12));
-            //var xx = db.Produtos.Include(x => x.Aplicacoes.Select(y => y.Produtos)).ToList()
-
-            //var labels = _context.Labels.Include(l => l.Notes.Select(x => x.UserId == memberId)).ToList();
-
-
+            var labels = _repository.GetLabelListForNote();
 
             return View("_labelListForNotePartial", labels);
+
+            //var memberId = User.Identity.GetUserId();
+
+            //var labels = _context.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
+
+            //return View("_labelListForNotePartial", labels);
         }
 
     }

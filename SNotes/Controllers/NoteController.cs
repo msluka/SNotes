@@ -7,16 +7,17 @@ using System.Web.Mvc;
 using SNotes.Models;
 using SNotes.ViewModels;
 using Microsoft.AspNet.Identity;
+using SNotes.Repositories;
 
 namespace SNotes.Controllers
 {
     public class NoteController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly INoteRepository _repository;
 
-        public NoteController()
+        public NoteController(INoteRepository repository)
         {
-            _context = new ApplicationDbContext();
+            _repository = repository;
         }
 
 
@@ -32,164 +33,156 @@ namespace SNotes.Controllers
             if (memberId == null)
                 return RedirectToAction("Login", "Account");
 
-            var userNotes = _context.Notes.Where(n => n.UserId == memberId)
-                .Select(n => new NoteGridViewModel
-                {
-                    Title = n.Title,
-                    Content = n.Content,
-                    Id = n.Id,
-                    CreationTime = n.CreationTime,
-                    ModificationTime = n.ModificationTime,
-                    Labels = n.Labels.ToList()
+            var notes = _repository.GetNoteList();
 
-                })
-                .OrderByDescending(o => o.CreationTime)
-                .ToList();
+            return View(notes);
 
-            
-            return View(userNotes);
+            //var memberId = User.Identity.GetUserId();
+            //if (memberId == null)
+            //    return RedirectToAction("Login", "Account");
+
+            //var userNotes = _context.Notes.Where(n => n.UserId == memberId)
+            //    .Select(n => new NoteGridViewModel
+            //    {
+            //        Title = n.Title,
+            //        Content = n.Content,
+            //        Id = n.Id,
+            //        CreationTime = n.CreationTime,
+            //        ModificationTime = n.ModificationTime,
+            //        Labels = n.Labels.ToList()
+
+            //    })
+            //    .OrderByDescending(o => o.CreationTime)
+            //    .ToList();
             
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            var model = new AddNoteViewModel();
+            return View(model);
         }
 
         [HttpPost]
         public ActionResult Create(AddNoteViewModel model)
         {
-            var memberId = User.Identity.GetUserId();
-            var note = new Note()
+            if (ModelState.IsValid)
             {
-                
-                UserId = memberId,
-                Title = model.Title,
-                Content = model.Content,
-                CreationTime = DateTime.Now,
-                ModificationTime = DateTime.Now
+                _repository.Save(model);
+                return RedirectToAction("NoteList");
+            }
 
-            };
+            return View(model);
 
-            _context.Notes.Add(note);
-            _context.SaveChanges();
+            //var memberId = User.Identity.GetUserId();
+            //var note = new Note()
+            //{
 
-            return RedirectToAction("NoteList", "Note");
+            //    UserId = memberId,
+            //    Title = model.Title,
+            //    Content = model.Content,
+            //    CreationTime = DateTime.Now,
+            //    ModificationTime = DateTime.Now
+
+            //};
+
+            //_context.Notes.Add(note);
+            //_context.SaveChanges();
+
+            //return RedirectToAction("NoteList", "Note");
         }
 
         [HttpGet]
         public ActionResult Edit(long id)
         {
-            var note = _context.Notes.SingleOrDefault(n => n.Id == id);
-            if (note == null)
+            var model = _repository.Get(id);
+            return View(model);
+            //var note = _context.Notes.SingleOrDefault(n => n.Id == id);
+            //if (note == null)
 
-                return HttpNotFound();
+            //    return HttpNotFound();
 
-            var viewModel = new EditNoteViewModel
-            {
-                Title = note.Title,
-                Content = note.Content,
-                Id = note.Id,
+            //var viewModel = new EditNoteViewModel
+            //{
+            //    Title = note.Title,
+            //    Content = note.Content,
+            //    Id = note.Id,
 
-            };
-            return View(viewModel);
+            //};
+            //return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult Edit(EditNoteViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                _repository.Update(model);
+                return RedirectToAction("Notelist");
+            }
 
-            var note = _context.Notes.Single(x => x.Id == model.Id);
-            note.ModificationTime = DateTime.Now;
-            note.Title = model.Title;
-            note.Content = model.Content;
-            _context.SaveChanges();
+            return View(model);
 
-            return RedirectToAction("NoteList", "Note");
+            //var note = _context.Notes.Single(x => x.Id == model.Id);
+            //note.ModificationTime = DateTime.Now;
+            //note.Title = model.Title;
+            //note.Content = model.Content;
+            //_context.SaveChanges();
+
+            //return RedirectToAction("NoteList", "Note");
         }
 
         [HttpPost]
         public ActionResult Delete(long id)
         {
-            var customer = _context.Notes.Single(x => x.Id == id);
-            _context.Notes.Remove(customer);
-            _context.SaveChanges();
+            _repository.Delete(id);
 
-            return RedirectToAction("NoteList", "Note");
+            return RedirectToAction("NoteList");
+
+            //var customer = _context.Notes.Single(x => x.Id == id);
+            //_context.Notes.Remove(customer);
+            //_context.SaveChanges();
+
+            //return RedirectToAction("NoteList", "Note");
         }
-        //[AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
-        //public ActionResult Delete(long id)
-        //{
-
-        //    var note = _context.Notes.SingleOrDefault(n => n.Id == id);
-
-        //    _context.Notes.Remove(note);
-        //    _context.SaveChanges();
-
-        //    return RedirectToAction("NoteList");
-
-        //}
+     
 
         public ActionResult Search(string searchString)
         {
-            var memberId = User.Identity.GetUserId();
-            if (memberId == null)
-                return RedirectToAction("Login", "Account");
-
-
-            var searchResult = _context.Notes.Where(n => n.UserId == memberId && n.Content.Contains(searchString))
-                .Select(n => new NoteGridViewModel
-                {
-                    Title = n.Title,
-                    Content = n.Content,
-                    Id = n.Id,
-                    CreationTime = n.CreationTime,
-                    ModificationTime = n.ModificationTime
-
-                })
-                .OrderByDescending(n => n.CreationTime);
-
+            var searchResult = _repository.Search(searchString);
             return View("NoteList", searchResult);
+
+            //var searchResult = _context.Notes.Where(n => n.UserId == memberId && n.Content.Contains(searchString))
+            //    .Select(n => new NoteGridViewModel
+            //    {
+            //        Title = n.Title,
+            //        Content = n.Content,
+            //        Id = n.Id,
+            //        CreationTime = n.CreationTime,
+            //        ModificationTime = n.ModificationTime
+
+            //    })
+            //    .OrderByDescending(n => n.CreationTime);
+
+            //return View("NoteList", searchResult);
 
         }
 
         public ActionResult Sort(string sortOrder)
         {
-            var memberId = User.Identity.GetUserId();
-            if (memberId == null)
-                return RedirectToAction("Login", "Account");
 
-            if (sortOrder == "Number1")
+            if (sortOrder == "CreationTime")
             {
-                var sortResult = _context.Notes.Where(n => n.UserId == memberId)
-                    .Select(n => new NoteGridViewModel
-                    {
-                        Title = n.Title,
-                        Content = n.Content,
-                        Id = n.Id,
-                        CreationTime = n.CreationTime,
-                        ModificationTime = n.ModificationTime
-
-                        //}).OrderByDescending(n => n.CreationTime);
-                    }).OrderByDescending(n => n.CreationTime);
+                var sortResult = _repository.SortByCreationTime();
 
                 return View("NoteList", sortResult);
 
             }
              
-            if (sortOrder == "Number2")
+            if (sortOrder == "ModificationTime")
             {
-                var sortResult = _context.Notes.Where(n => n.UserId == memberId)
-                    .Select(n => new NoteGridViewModel
-                    {
-                        Title = n.Title,
-                        Content = n.Content,
-                        Id = n.Id,
-                        CreationTime = n.CreationTime,
-                        ModificationTime = n.ModificationTime
-
-                    }).OrderByDescending(n => n.ModificationTime);
+                var sortResult = _repository.SortByModificationTime();
 
                 return View("NoteList", sortResult);
             }
@@ -210,24 +203,13 @@ namespace SNotes.Controllers
         [HttpPost]
         public ActionResult AddLabelToNote(AddLabelToNoteViewModel model)
         {
-            
-            var note = _context.Notes.Single(x => x.Id == model.NoteId);
-
-            var label = new Label
+            if (ModelState.IsValid)
             {
-                Name = model.LabelName,
-                UserId = User.Identity.GetUserId()
-                
-            };
-            
-            //label.Notes.Add(note);
-            _context.Labels.Add(label);
+                _repository.AddLabelToNote(model);
+                return RedirectToAction("Notelist");
+            }
 
-            note.Labels.Add(label);
-
-            _context.SaveChanges();
-
-            return RedirectToAction("NoteList", "Note");
+            return View(model);
         }
 
 

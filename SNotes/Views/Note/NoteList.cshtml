@@ -102,23 +102,7 @@
 </div>
 
 <script>
-    //$('.noteBox').hover(function () {
-    //    $(this).animate({ height: '400px', width: '400px'});
-    //}, function () {
-    //    $(this).animate({ height: '200px', width: '200px' });
-    //});
-
-    //$('.noteBox').hover(
-
-    //    function () {
-    //        $(this).animate({ height: '400px', width: '400px' });
-    //    },
-
-    //    function () {
-    //        $(this).animate({ height: '200px', width: '200px' });
-    //    }
-
-    //);
+  
   
     var next_move = "expand";
     $(document).ready(function () {
@@ -128,9 +112,7 @@
             if (next_move == "expand") {
                 css = {
                     width: '400px',
-                    height: '400px',
-               
-                  
+                    height: '400px'
                    
                 };
                 next_move = "shrink";
@@ -141,7 +123,6 @@
                    
                     left: '0',
                     top: '0'
-                  
                     
                 };
                 console.log('hi');
@@ -150,100 +131,5 @@
             $(this).animate(css, 400);
         });
     });
-
-
-
-    //$('.noteBox').hover(function () {
-    //    var pos = $(this).position();
-    //    var $clone = $(this).clone();
-    //        $clone.appendTo(this).addClass('item_clone').css({
-    //            //left: pos.center,
-    //            //top: pos.center,
-    //            'position': 'fixed',
-    //            'left': '50%',
-    //            'top': '50%',
-    //            'margin-left': '-300px',
-    //            'margin-top': '-200px',
-    //            'box-shadow': '2px 2px 2px rgba(0,0,0,0.2)',
-    //            //'left': -$(this).offset().left - $(window).scrollLeft(),
-    //            //'top': -$(this).offset().left - $(window).scrollTop(),
-    //            //'margin-left': -$('.noteBox').outerWidth() / 2,
-    //            //'margin-top': -$('.noteBox').outerHeight() / 2,
-    //            'z-index': '100'
-    //            //'opacity':'0.6'
-    //        });
-    //        //}).animate({ height: '480px', width: '680px' });
-    //    },
-
-    //function () {
-    //    $('.item_clone', this).remove();
-    //});
-
-    //------------------------------------------------------
-    //$('.noteBox').click(function () {
-
-    //    var pos = $(this).position();
-    //    var $clone = $(this).clone();
-
-    //    var content = $(this).find('.noteContent');
-    //    var listOfLabels = $(this).find('.listOfLabels');
-    //    var time = $(this).find('.time');
-
-    //    listOfLabels.addClass('showLabels').css({
-    //        'padding': '5px',
-    //        'display': 'block'
-    //    });
-
-    //    time.addClass('showTime').css({
-    //        'text-align': 'left',
-    //        'padding': '5px',
-    //        'text-align': 'right',
-    //        'display': 'block'
-    //    });
-
-    //    content.addClass('xxx').css({
-    //        'overflow': 'auto'
-    //    });
-
-    //    $clone.appendTo(this).addClass('item_clone').css({
-    //        //$(this).addClass('item_clone').css({
-            //'position': 'fixed',
-            //'left': '50%',
-            //'top': '50%',
-            //'margin-left': '-300px',
-            //'margin-top': '-200px',
-            //'box-shadow': '2px 2px 2px rgba(0,0,0,0.2)',
-
-            //'z-index': '100'
-
-
-    //    }).animate({ height: '480', width: '680px' });
-
-    //});
-    //-----------------------------------------------------
-
-    //$('#newId').replaceWith(clone);
-    //$(this).attr('id', 'newID');
-
-
-    //function () {
-    //    $('.item_clone', this).remove();
-    //});
-
-
-    //$('.title').click(function () {
-    //    $('.item_clone').removeClass('item_clone').animate({ height: '200px', width: '200px' });
-
-    //    alert('hello');
-    //    //$('#newId').replaceWith(clone);
-    //});
-
-
-    //$('.noteContent').click(function () {
-    //    $('.noteBox').removeClass("item_clone");
-    //});
-
-
-
 
 </script>

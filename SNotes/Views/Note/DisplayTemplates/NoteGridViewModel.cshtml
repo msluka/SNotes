@@ -39,19 +39,9 @@
                 }
                 <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => n.CreationTime)
             </div>
-            @*<div>
-                                                <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => note.CreationTime)
-
-                                            </div>*@
+      
             <div class="footerIcons" style="display:flex; margin-left: auto; background: #e20074; color: #fdffff; min-width: 100%; padding: 5px 5px 0 5px;">
-                @*@Html.ActionLink("Edit", "Edit", "Note", new { id = note.Id }, null)
-
-
-                                                @using (Html.BeginForm("Delete", "Note"))
-                                                {
-                                                    <input type="hidden" name="id" value="@note.Id" id="id" />
-                                                    <input type="submit" value="Delete" class="btn-link" />
-                                                }*@
+            
                 <div>
                     @Model.CreationTime.ToString("d MMM yyyy")
                 </div>

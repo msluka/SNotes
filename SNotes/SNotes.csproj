@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.4.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Windsor.3.4.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +85,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -200,9 +209,13 @@
     <Compile Include="Controllers\LabelController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="DAL\SNotesContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Controllersinstaller.cs" />
+    <Compile Include="Infrastructure\ServicesInstaller.cs" />
+    <Compile Include="Infrastructure\WindsorConrtollerFactory.cs" />
     <Compile Include="Migrations\201705291150417_InitialMigration.cs" />
     <Compile Include="Migrations\201705291150417_InitialMigration.Designer.cs">
       <DependentUpon>201705291150417_InitialMigration.cs</DependentUpon>
@@ -242,10 +255,17 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ILabelRepository.cs" />
+    <Compile Include="Repositories\INoteRepository.cs" />
+    <Compile Include="Repositories\LabelRepository.cs" />
+    <Compile Include="Repositories\NoteRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddLabelViewModel.cs" />
     <Compile Include="ViewModels\AddNoteViewModel.cs" />
     <Compile Include="ViewModels\AddLabelToNoteViewModel.cs" />
+    <Compile Include="ViewModels\EditLabelViewModel.cs" />
     <Compile Include="ViewModels\EditNoteViewModel.cs" />
+    <Compile Include="ViewModels\LabelGridViewModel.cs" />
     <Compile Include="ViewModels\NoteGridViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
