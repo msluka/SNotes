@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc.Html;
 using Microsoft.AspNet.Identity;
 using SNotes.DAL;
 using SNotes.Models;
@@ -45,7 +44,6 @@ namespace SNotes.Repositories
 
         public void Save(AddNoteViewModel model)
         {
-            //var memberId = User.Identity.GetUserId();
 
             var memberId = HttpContext.Current.User.Identity.GetUserId();
 
@@ -155,7 +153,7 @@ namespace SNotes.Repositories
             var memberId = HttpContext.Current.User.Identity.GetUserId();
 
             var note = _dbContext.Notes.Single(x => x.Id == model.NoteId);
-
+            
             var label = new Label
             {
                 Name = model.LabelName,

@@ -8,7 +8,7 @@ using Castle.MicroKernel;
 
 namespace SNotes.Infrastructure
 {
-    //tworzy obikt przez pobranie kontenera // Pobiera kontrolery uziwanc kontenera
+
     public class WindsorConrtollerFactory : DefaultControllerFactory
     {
 

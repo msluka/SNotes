@@ -21,8 +21,6 @@ namespace SNotes.Repositories
 
         public IEnumerable<LabelGridViewModel> GetLabelList(string userId)
         {
-            //var memberId = HttpContext.Current.User.Identity.GetUserId();
-
             return _dbContext.Labels.Where(n => n.UserId == userId)
                 .Select(n => new LabelGridViewModel()
                 {
@@ -77,14 +75,14 @@ namespace SNotes.Repositories
 
         }
 
-        public IEnumerable<Label> GetLabelListForNote()
-        {
-            var memberId = HttpContext.Current.User.Identity.GetUserId();
+        //public IEnumerable<Label> GetLabelListForNote()
+        //{
+        //    var memberId = HttpContext.Current.User.Identity.GetUserId();
 
-            var labels = _dbContext.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
+        //    var labels = _dbContext.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
 
-            return labels;
-            
-        }
+        //    return labels;
+
+        //}
     }
 }

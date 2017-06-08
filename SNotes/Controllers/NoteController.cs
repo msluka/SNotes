@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Web;
+﻿
 using System.Web.Mvc;
-using SNotes.Models;
 using SNotes.ViewModels;
 using Microsoft.AspNet.Identity;
 using SNotes.Repositories;
@@ -36,24 +31,6 @@ namespace SNotes.Controllers
             var notes = _repository.GetNoteList();
 
             return View(notes);
-
-            //var memberId = User.Identity.GetUserId();
-            //if (memberId == null)
-            //    return RedirectToAction("Login", "Account");
-
-            //var userNotes = _context.Notes.Where(n => n.UserId == memberId)
-            //    .Select(n => new NoteGridViewModel
-            //    {
-            //        Title = n.Title,
-            //        Content = n.Content,
-            //        Id = n.Id,
-            //        CreationTime = n.CreationTime,
-            //        ModificationTime = n.ModificationTime,
-            //        Labels = n.Labels.ToList()
-
-            //    })
-            //    .OrderByDescending(o => o.CreationTime)
-            //    .ToList();
             
         }
 
@@ -74,23 +51,7 @@ namespace SNotes.Controllers
             }
 
             return View(model);
-
-            //var memberId = User.Identity.GetUserId();
-            //var note = new Note()
-            //{
-
-            //    UserId = memberId,
-            //    Title = model.Title,
-            //    Content = model.Content,
-            //    CreationTime = DateTime.Now,
-            //    ModificationTime = DateTime.Now
-
-            //};
-
-            //_context.Notes.Add(note);
-            //_context.SaveChanges();
-
-            //return RedirectToAction("NoteList", "Note");
+            
         }
 
         [HttpGet]
@@ -98,19 +59,7 @@ namespace SNotes.Controllers
         {
             var model = _repository.Get(id);
             return View(model);
-            //var note = _context.Notes.SingleOrDefault(n => n.Id == id);
-            //if (note == null)
 
-            //    return HttpNotFound();
-
-            //var viewModel = new EditNoteViewModel
-            //{
-            //    Title = note.Title,
-            //    Content = note.Content,
-            //    Id = note.Id,
-
-            //};
-            //return View(viewModel);
         }
 
         [HttpPost]
@@ -124,13 +73,6 @@ namespace SNotes.Controllers
 
             return View(model);
 
-            //var note = _context.Notes.Single(x => x.Id == model.Id);
-            //note.ModificationTime = DateTime.Now;
-            //note.Title = model.Title;
-            //note.Content = model.Content;
-            //_context.SaveChanges();
-
-            //return RedirectToAction("NoteList", "Note");
         }
 
         [HttpPost]
@@ -140,11 +82,6 @@ namespace SNotes.Controllers
 
             return RedirectToAction("NoteList");
 
-            //var customer = _context.Notes.Single(x => x.Id == id);
-            //_context.Notes.Remove(customer);
-            //_context.SaveChanges();
-
-            //return RedirectToAction("NoteList", "Note");
         }
      
 
@@ -152,20 +89,6 @@ namespace SNotes.Controllers
         {
             var searchResult = _repository.Search(searchString);
             return View("NoteList", searchResult);
-
-            //var searchResult = _context.Notes.Where(n => n.UserId == memberId && n.Content.Contains(searchString))
-            //    .Select(n => new NoteGridViewModel
-            //    {
-            //        Title = n.Title,
-            //        Content = n.Content,
-            //        Id = n.Id,
-            //        CreationTime = n.CreationTime,
-            //        ModificationTime = n.ModificationTime
-
-            //    })
-            //    .OrderByDescending(n => n.CreationTime);
-
-            //return View("NoteList", searchResult);
 
         }
 

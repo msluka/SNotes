@@ -17,7 +17,6 @@ namespace SNotes
 
         private static void BootstrapContainer()
         {
-            //Configuracja kontenera // tworzy kontener(Worek)
             _container = new WindsorContainer().Install(FromAssembly.This());
             var controllerFactory = new WindsorConrtollerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);

@@ -303,7 +303,6 @@
     <Content Include="Views\Note\Edit.cshtml" />
     <Content Include="Views\Note\NoteList.cshtml" />
     <Content Include="Views\Shared\_labelListPartial.cshtml" />
-    <Content Include="Views\Label\LabelList.cshtml" />
     <Content Include="Views\Label\Create.cshtml" />
     <Content Include="Views\Label\Edit.cshtml" />
     <Content Include="Views\Note\AddLabelToNote.cshtml" />

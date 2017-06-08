@@ -11,7 +11,7 @@ namespace SNotes.Repositories
         EditLabelViewModel Get(long id);
         void Update(EditLabelViewModel model);
         void Delete(long id);
-        IEnumerable<Label> GetLabelListForNote();
+        //IEnumerable<Label> GetLabelListForNote();
 
     }
 }

@@ -24,32 +24,6 @@ textarea {
     max-width: 280px;
 }
 
-/*.noteList-list-horizontal {
-    float: left;
-}*/
-
-
-
-/*.noteBox {
-    height: 200px;
-    width: 200px;
-    margin: 5px;
-    padding: 5px;
-    position: relative;
-    background: white;
-    box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;
-}*/
-
-/*.notesListContainer {
-    display: inline-block;
-}*/
-
-
-/*.noteFooter {
-    position: absolute;
-    bottom: 0;
-    display: inline-block;
-}*/
 
 .button-link {
     background-color: transparent;
@@ -60,15 +34,3 @@ textarea {
         color: blue;
         text-decoration: underline;
     }
-
-
-
-/*#searchString {
-    width: 500px;
-    height: 40px;
-    border-radius: 5px;
-    margin: 10px 0 20px 170px;
-    padding: 5px 3px 3px 3px;
-    font-weight: bold;
-    font-size: 20px;
-}*/

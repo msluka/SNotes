@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using SNotes.Models;
 using SNotes.Repositories;
 using SNotes.ViewModels;
 
@@ -38,12 +30,7 @@ namespace SNotes.Controllers
             var labels = _repository.GetLabelList(User.Identity.GetUserId());
 
             return View("_labelListPartial", labels);
-
-            //var memberId = User.Identity.GetUserId();
-
-            //var labels = _context.Labels.Where(x => x.UserId == memberId).ToList();
-
-            //return View("_labelListPartial", labels);
+            
         }
 
         [HttpGet]
@@ -63,19 +50,7 @@ namespace SNotes.Controllers
             }
 
             return View(model);
-
-
-            //var memberId = User.Identity.GetUserId();
-            //var label= new Label()
-            //{
-            //    Name = model.Name,
-            //    UserId = memberId
-            //};
-
-            //_context.Labels.AddOrUpdate(label);
-            //_context.SaveChanges();
-
-            //return RedirectToAction("NoteList", "Note");
+            
         }
 
         [HttpGet]
@@ -83,14 +58,7 @@ namespace SNotes.Controllers
         {
             var model = _repository.Get(id);
             return View(model);
-
-            
-            //var label = _context.Labels.SingleOrDefault(l => l.Id == id);
-            //if (label == null)
-
-            //    return HttpNotFound();
-
-            //return View("Edit", label);
+  
         }
 
         [HttpPost]
@@ -103,12 +71,7 @@ namespace SNotes.Controllers
             }
 
             return View(model);
-
-            //var label = _context.Labels.Single(l => l.Id == model.Id);
-            //label.Name = model.Name;
-            //_context.SaveChanges();
-
-            //return RedirectToAction("NoteList", "Note");
+            
         }
 
         [HttpPost]
@@ -117,27 +80,7 @@ namespace SNotes.Controllers
             _repository.Delete(id);
 
             return RedirectToAction("NoteList", "Note");
-
-            //var label = _context.Labels.Single(x => x.Id == id);
-            //_context.Labels.Remove(label);
-            //_context.SaveChanges();
-
-            //return RedirectToAction("Notelist", "Note");
            
-        }
-
-        public ActionResult GetLabelListForNote()
-        {
-
-            var labels = _repository.GetLabelListForNote();
-
-            return View("_labelListForNotePartial", labels);
-
-            //var memberId = User.Identity.GetUserId();
-
-            //var labels = _context.Notes.Where(x => x.UserId == memberId).SelectMany(x => x.Labels);
-
-            //return View("_labelListForNotePartial", labels);
         }
 
     }
