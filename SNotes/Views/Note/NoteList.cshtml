@@ -27,6 +27,33 @@
         border-radius: 5px;
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     }
+
+    .noteBox {
+        padding: 0; 
+        height: 200px;
+        width: 200px; 
+        margin: 5px; 
+        position: relative; 
+        background: white;
+        box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;
+        
+    }
+
+    .expand {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        margin-top: -200px;
+        margin-left: -300px;
+        z-index: 100;
+        width: 600px;
+        height:400px;
+        transition: 0.2s ease-in-out;
+        transform: rotate(360deg);
+        animation-direction: alternate;
+        
+    }
+
 </style>
 <div class="row">
     <div class="col-md-3">
@@ -102,33 +129,29 @@
 
 <script>
   
-  
-    var next_move = "expand";
-    $(document).ready(function () {
-        $(".noteBox").click(function () {
-            console.log(next_move);
-            var css = {};
-            if (next_move == "expand") {
-                css = {
-                    width: '400px',
-                    height: '400px'
-                   
-                };
-                next_move = "shrink";
-            } else {
-               css = {
-                    width: '200px',
-                    height: '200px',
-                   
-                    left: '0',
-                    top: '0'
-                    
-                };
-                console.log('hi');
-                next_move = "expand";
-            }
-            $(this).animate(css, 400);
+    $(document).ready(function() {
+
+        $(".noteContent, .noteTitle").on("click",
+            function() {
+                var parent = $(this).closest('.noteBox');
+
+                parent.addClass("expand");
+                parent.attr('id', 'temporaryId');
+               
+            });
+
+      
+        $("body").click(function () {
+            $(".expand").removeClass("expand");
+            $("#temporaryId").removeAttr("id");
         });
+
+        $(".noteBox").click(function (event) {
+            event.stopPropagation();
+        });
+
     });
+  
+    
 
 </script>
