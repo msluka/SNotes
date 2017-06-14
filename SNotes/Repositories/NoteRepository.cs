@@ -70,8 +70,9 @@ namespace SNotes.Repositories
                     Id = id,
                     Title = x.Title,
                     Content = x.Content
-                    
-                }).Single();
+
+                })
+                .Single();
         }
 
         public void Update(EditNoteViewModel model)
@@ -81,7 +82,7 @@ namespace SNotes.Repositories
             note.Title = model.Title;
             note.Content = model.Content;
             note.ModificationTime = DateTime.Now;
-            
+
             _dbContext.SaveChanges();
         }
 
@@ -95,7 +96,7 @@ namespace SNotes.Repositories
 
         public IEnumerable<NoteGridViewModel> Search(string searchString)
         {
-            
+
             var memberId = HttpContext.Current.User.Identity.GetUserId();
 
             return _dbContext.Notes.Where(n => n.UserId == memberId && n.Content.Contains(searchString))
@@ -107,23 +108,25 @@ namespace SNotes.Repositories
                     CreationTime = n.CreationTime,
                     ModificationTime = n.ModificationTime
 
-                }).OrderByDescending(n => n.CreationTime);
+                })
+                .OrderByDescending(n => n.CreationTime);
         }
 
-        public IEnumerable<NoteGridViewModel> SortByCreationTime ()
+        public IEnumerable<NoteGridViewModel> SortByCreationTime()
         {
             var memberId = HttpContext.Current.User.Identity.GetUserId();
 
             var sortResult = _dbContext.Notes.Where(n => n.UserId == memberId)
-                    .Select(n => new NoteGridViewModel
-                    {
-                        Id = n.Id,
-                        Title = n.Title,
-                        Content = n.Content,
-                        CreationTime = n.CreationTime,
-                        ModificationTime = n.ModificationTime
+                .Select(n => new NoteGridViewModel
+                {
+                    Id = n.Id,
+                    Title = n.Title,
+                    Content = n.Content,
+                    CreationTime = n.CreationTime,
+                    ModificationTime = n.ModificationTime
 
-                    }).OrderByDescending(n => n.CreationTime);
+                })
+                .OrderByDescending(n => n.CreationTime);
 
             return sortResult;
 
@@ -132,17 +135,18 @@ namespace SNotes.Repositories
         public IEnumerable<NoteGridViewModel> SortByModificationTime()
         {
             var memberId = HttpContext.Current.User.Identity.GetUserId();
-            
-                var sortResult = _dbContext.Notes.Where(n => n.UserId == memberId)
-                    .Select(n => new NoteGridViewModel
-                    {
-                        Title = n.Title,
-                        Content = n.Content,
-                        Id = n.Id,
-                        CreationTime = n.CreationTime,
-                        ModificationTime = n.ModificationTime
 
-                    }).OrderByDescending(n => n.ModificationTime);
+            var sortResult = _dbContext.Notes.Where(n => n.UserId == memberId)
+                .Select(n => new NoteGridViewModel
+                {
+                    Title = n.Title,
+                    Content = n.Content,
+                    Id = n.Id,
+                    CreationTime = n.CreationTime,
+                    ModificationTime = n.ModificationTime
+
+                })
+                .OrderByDescending(n => n.ModificationTime);
 
             return sortResult;
         }
@@ -160,31 +164,44 @@ namespace SNotes.Repositories
                     ModificationTime = n.ModificationTime,
                     Labels = n.Labels.ToList()
 
-                }).OrderByDescending(n => n.ModificationTime);
+                })
+                .OrderByDescending(n => n.ModificationTime);
 
             return sortResult;
         }
 
         public void AddLabelToNote(AddLabelToNoteViewModel model)
         {
+
             var memberId = HttpContext.Current.User.Identity.GetUserId();
 
+            var eLabel = _dbContext.Labels.Where(u => u.UserId == memberId)
+                .SingleOrDefault(x => x.Name.Equals(model.LabelName, StringComparison.Ordinal));
             var note = _dbContext.Notes.Single(x => x.Id == model.NoteId);
-            
-            var label = new Label
-            {
-                Name = model.LabelName,
-                UserId = memberId
 
-            };
-            
-            _dbContext.Labels.Add(label);
-           
-            note.Labels.Add(label);
+
+            if (eLabel != null)
+            {
+                note.Labels.Add(eLabel);
+            }
+
+            else
+            {
+                var label = new Label
+                {
+                    Name = model.LabelName,
+                    UserId = memberId
+                };
+
+                _dbContext.Labels.Add(label);
+
+                note.Labels.Add(label);
+
+                
+            }
 
             _dbContext.SaveChanges();
-
+            
         }
-
     }
 }
