@@ -29,31 +29,28 @@
     }
 
     .noteBox {
-        padding: 0; 
+        padding: 0;
         height: 200px;
-        width: 200px; 
-        margin: 5px; 
-        position: relative; 
+        width: 200px;
+        margin: 5px;
+        position: relative;
         background: white;
         box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;
-        
     }
 
     .expand {
         position: fixed;
         left: 50%;
         top: 50%;
-        margin-top: -200px;
-        margin-left: -300px;
+        margin-top: -32vh;
+        margin-left: -30vw;
         z-index: 100;
-        width: 600px;
-        height:400px;
+        width: 60vw;
+        height: 70vh;
         transition: 0.2s ease-in-out;
         transform: rotate(360deg);
         animation-direction: alternate;
-        
     }
-
 </style>
 <div class="row">
     <div class="col-md-3">
@@ -115,9 +112,11 @@
                     </div>
                 </div>
                 <div class="notesListContainer">
-                    <ul style="list-style-type: none; padding-left: 0;">
-                        @Html.DisplayForModel()
-                    </ul>
+                    <div class="notes" style="position: relative;">
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            @Html.DisplayForModel()
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -127,31 +126,57 @@
     <div class="col-md-1">     </div>
 </div>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-  
-    $(document).ready(function() {
+
+    $(document).ready(function () {
 
         $(".noteContent, .noteTitle").on("click",
-            function() {
+            function () {
+
                 var parent = $(this).closest('.noteBox');
 
-                parent.addClass("expand");
-                parent.attr('id', 'temporaryId');
-               
+                if ($('#temporaryId').length) {
+
+
+
+                } else {
+
+
+                    var clone = parent.clone();
+
+                    clone.appendTo(".notes").addClass("expand");
+                    clone.attr('id', 'temporaryId');
+
+                }
+
+
+
+
+                $("body").click(function (e) {
+
+
+                    if ($(e.target).closest("#temporaryId").length) {
+                        return false;
+                    }
+                    else {
+                        $("#temporaryId, this").remove();
+
+                        $(".expand").removeClass("expand");
+
+                        $("#temporaryId").removeAttr("id");
+                    }
+
+                });
+
+                $(".noteBox").click(function (event) {
+
+                    event.stopPropagation();
+
+                });
+
             });
-
-      
-        $("body").click(function () {
-            $(".expand").removeClass("expand");
-            $("#temporaryId").removeAttr("id");
-        });
-
-        $(".noteBox").click(function (event) {
-            event.stopPropagation();
-        });
-
     });
-  
-    
+
 
 </script>

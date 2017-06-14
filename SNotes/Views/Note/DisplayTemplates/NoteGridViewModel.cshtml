@@ -1,14 +1,14 @@
 ﻿@model SNotes.ViewModels.NoteGridViewModel
-    
+
 
 <li class="noteList-list-horizontal" style="float: left;">
 
-    <div class="noteBox">
+    <div class="noteBox" id="noteBox">
         @if (Model.Title != null)
         {
             <div class="noteTitle" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px;">
 
-                @Html.DisplayFor(n =>n.Title)
+                @Html.DisplayFor(n => n.Title)
 
 
             </div>
@@ -20,7 +20,7 @@
             @Html.DisplayFor(m => m.Labels)
         </ul>
 
-        <div class="noteFooter" style="min-width: 100%; display: inline-block; position: absolute; bottom: 0;">
+        <div class="noteFooter" style="min-width: 100%; background: #e20074; display: inline-block; position: absolute; bottom: 0;">
 
             <div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>
 
@@ -37,38 +37,44 @@
                 }
                 <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => n.CreationTime)
             </div>
-      
-            <div class="footerIcons" style="display:flex; margin-left: auto; background: #e20074; color: #fdffff; min-width: 100%; padding: 5px 5px 0 5px;">
-            
-                <div>
+
+            <div class="footerIcons" style="background: #e20074; margin-left: auto;  min-width: 100%; padding: 5px 5px 0 5px;">
+
+                <div style="float: left; background: #e20074; color: #fdffff; width: 60%">
                     @Model.CreationTime.ToString("d MMM yyyy")
                 </div>
                 <div>
-                    <a href="@Url.Action("AddLabelToNote", "Note", new {id = Model.Id}, null)">
-                        <span class="glyphicon glyphicon-tag" style="color: #fdffff; font-size: 12px; padding: 0 10px 0 45px;"></span>
-                    </a>
-                </div>
-                <div>
-                    <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
-                        <span class="glyphicon glyphicon-pencil" style="color: #fdffff; font-size: 12px; padding: 0 10px 0 0;"></span>
-                    </a>
-                </div>
-                <div>
-                    @using (Html.BeginForm("Delete", "Note"))
-                    {
-                        <input type="hidden" name="id" value="@Model.Id" id="id" style="display: none;" />
 
-                        <button type="submit" class="btn btn-link" style="padding: 0;">
-                            <span class="glyphicon glyphicon-trash" style="color: #fdffff; font-size: 12px;"></span>
-                        </button>
-                    }
-                </div>
-                <div>
-                    <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
-                        <span class="glyphicon glyphicon-th-list" style="color: #fdffff; font-size: 12px; padding: 0 0px 0 10px;"></span>
-                    </a>
-                </div>
+                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%;">
+                        <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
+                            <span class="glyphicon glyphicon-th-list btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0 5px 0 5px; border-width: 0 1px 4px 1px;"></span>
+                        </a>
+                    </div>
 
+                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                        @using (Html.BeginForm("Delete", "Note"))
+                        {
+                            <input type="hidden" name="id" value="@Model.Id" id="id" style="display: none;" />
+
+                            <button type="submit" class="btn btn-link" style="padding: 0; border-width: 0 1px 4px 1px;">
+                                <span class="glyphicon glyphicon-trash" style="color: #fdffff; font-size: 12px;"></span>
+                            </button>
+                        }
+                    </div>
+
+                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                        <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
+                            <span class="glyphicon glyphicon-pencil btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
+                        </a>
+                    </div>
+
+                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                        <a href="@Url.Action("AddLabelToNote", "Note", new {id = Model.Id}, null)">
+                            <span class="glyphicon glyphicon-tag btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
