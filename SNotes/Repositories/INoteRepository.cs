@@ -16,6 +16,7 @@ namespace SNotes.Repositories
         IEnumerable<NoteGridViewModel> Search(string searchString);
         IEnumerable<NoteGridViewModel> SortByCreationTime(); 
         IEnumerable<NoteGridViewModel> SortByModificationTime();
+        IEnumerable<NoteGridViewModel> SortByLabelGroup(long id);
         void AddLabelToNote(AddLabelToNoteViewModel model);
 
     }

@@ -113,6 +113,13 @@ namespace SNotes.Controllers
             return View("NoteList");
         }
 
+        public ActionResult SortByLabelGroup(long id)
+        {
+            var labels = _repository.SortByLabelGroup(id);
+
+            return View("NoteList", labels);
+        }
+
         [HttpGet]
         public ActionResult AddLabelToNote(long id)
         {

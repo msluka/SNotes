@@ -147,7 +147,24 @@ namespace SNotes.Repositories
             return sortResult;
         }
 
-        
+        public IEnumerable<NoteGridViewModel> SortByLabelGroup(long id)
+        {
+
+            var sortResult = _dbContext.Notes.Where(n => n.Labels.Any(s => s.Id == id))
+                .Select(n => new NoteGridViewModel
+                {
+                    Title = n.Title,
+                    Content = n.Content,
+                    Id = n.Id,
+                    CreationTime = n.CreationTime,
+                    ModificationTime = n.ModificationTime,
+                    Labels = n.Labels.ToList()
+
+                }).OrderByDescending(n => n.ModificationTime);
+
+            return sortResult;
+        }
+
         public void AddLabelToNote(AddLabelToNoteViewModel model)
         {
             var memberId = HttpContext.Current.User.Identity.GetUserId();
