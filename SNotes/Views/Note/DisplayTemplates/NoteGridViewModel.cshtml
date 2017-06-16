@@ -6,25 +6,28 @@
     <div class="noteBox" id="noteBox">
         @if (Model.Title != null)
         {
-            <div class="noteTitle" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px;">
-
+            <div class="noteTitle"  id="noteTitle" placeholder="Title" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px; overflow:hidden;">
+                <textarea style="box-sizing: border-box; border:none; overflow: hidden; resize: none; outline: none; text-indent: -54px !important;">
                 @Html.DisplayFor(n => n.Title)
-              
+                </textarea>
             </div>
         }
-        <div class="noteContent" style="padding: 5px; overflow: hidden; ">
-            @Html.DisplayFor(n => n.Content)
+        <div class="noteContent" id="noteContent">
+            <textarea style="height: 100%; width: 100% !important; box-sizing: border-box;   border:none; overflow: hidden; resize: none; outline: none;">
+                @Html.DisplayFor(n => n.Content)
+            </textarea>
+
         </div>
-        <div class="noteLabel" style="position: absolute;">
+        <div class="noteLabel" id="noteLabel" style="position: absolute;">
             <ul style="padding: 0 5px 0 5px; direction: ltr;">
 
                 @Html.DisplayFor(m => m.Labels)
-               
+
             </ul>
         </div>
 
 
-        <div class="noteFooter" style="min-width: 100%; background: #e20074; display: inline-block; position: absolute; bottom: 0;">
+        <div class="noteFooter" id="noteFooter" style="min-width: 100%; background: #e20074; display: inline-block; position: absolute; bottom: 0;">
 
             @*<div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>*@
 

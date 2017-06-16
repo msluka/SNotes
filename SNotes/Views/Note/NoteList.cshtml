@@ -51,9 +51,8 @@
         transform: rotate(360deg);
         animation-direction: alternate;
     }
-
-    
 </style>
+
 <div class="row">
     <div class="col-md-3">
 
@@ -130,23 +129,28 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-
-
-
+   
 
     $(document).ready(function () {
 
+        $("input[type='text'], textarea").attr('spellcheck', false);
+
         $(function () {
-            var noteBoxHeight = $(".noteBox").outerHeight();
-            var titleHeight = $(".noteTitle").outerHeight();
 
-            var noteLabelHeight = $(".noteLabel").outerHeight();
-            var noteFooterHeight = $(".noteFooter").outerHeight();
+            $('li').each(function() {
+                
+                var noteBoxHeight = $(".noteBox", this).outerHeight();
+                var titleHeight = $(".noteTitle", this).outerHeight();
 
-            $(".noteLabel").css({ bottom: noteFooterHeight });
+                var noteLabelHeight = $(".noteLabel", this).outerHeight();
+                var noteFooterHeight = $(".noteFooter", this).outerHeight();
 
+                $(".noteLabel").css({ bottom: noteFooterHeight });
 
-            $(".noteContent").outerHeight(noteBoxHeight - titleHeight - noteLabelHeight - noteFooterHeight);
+                $(".noteContent", this).outerHeight(noteBoxHeight - titleHeight - noteLabelHeight - noteFooterHeight);
+
+            });
+            
 
         });
 
@@ -169,24 +173,15 @@
                     clone.appendTo(".notes").addClass("expand");
                     clone.attr('id', 'temporaryId');
 
+                    var noteBoxHeight = $(".expand").outerHeight();
+                    var titleHeight = $(".expand").find(".noteTitle").outerHeight();
 
-                    var expandNoteBoxHeight = $(".expand").outerHeight();
-                    var titleHeight = $(".noteTitle").outerHeight();
-                    var noteLabelHeight = $(".noteLabel").outerHeight();
-                    var noteFooterHeight = $(".noteFooter").outerHeight();
+                    var noteLabelHeight = $(".expand").find(".noteLabel").outerHeight();
+                    var noteFooterHeight = $(".expand").find(".noteFooter").outerHeight();
 
-                    $(".noteLabel").css({ bottom: noteFooterHeight });
+                    $(".expand").find(".noteLabel").css({ bottom: noteFooterHeight });
 
-                    if ($(".expand").find(".noteTitle")[0]) {
-                        $(".expand").find(".noteContent").outerHeight(expandNoteBoxHeight - noteLabelHeight - noteFooterHeight);
-                    }
-                    else if  ($(".expand").find(".noteLabel")[0]) {
-                        $(".expand").find(".noteContent").outerHeight(expandNoteBoxHeight - titleHeight - noteFooterHeight);
-                    }
-                   
-                    else {
-                        $(".expand").find(".noteContent").outerHeight(expandNoteBoxHeight - titleHeight - noteLabelHeight - noteFooterHeight);
-                    }
+                    $(".expand").find(".noteContent").outerHeight(noteBoxHeight - titleHeight - noteLabelHeight - noteFooterHeight);
 
 
                 };

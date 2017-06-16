@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using System.Web.Mvc.Html
+@using Microsoft.AspNet.Identity
 @model SNotes.ViewModels.AddNoteViewModel
 @{
     ViewBag.Title = "Create";
@@ -10,7 +11,7 @@
 { 
     <div class="form-group">
         @Html.TextAreaFor(m => m.Title, new { @class = "form-control" })
-
+       
         @Html.LabelFor(m => m.Content)
 
         @Html.TextAreaFor(m => m.Content, new {@class = "form-control"})
