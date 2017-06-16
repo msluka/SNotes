@@ -9,20 +9,24 @@
             <div class="noteTitle" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px;">
 
                 @Html.DisplayFor(n => n.Title)
-
-
+              
             </div>
         }
-        <div class="noteContent" style="padding: 5px; overflow: hidden;  height: 66%">
+        <div class="noteContent" style="padding: 5px; overflow: hidden; ">
             @Html.DisplayFor(n => n.Content)
         </div>
-        <ul>
-            @Html.DisplayFor(m => m.Labels)
-        </ul>
+        <div class="noteLabel" style="position: absolute;">
+            <ul style="padding: 0 5px 0 5px; direction: ltr;">
+
+                @Html.DisplayFor(m => m.Labels)
+               
+            </ul>
+        </div>
+
 
         <div class="noteFooter" style="min-width: 100%; background: #e20074; display: inline-block; position: absolute; bottom: 0;">
 
-            <div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>
+            @*<div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>*@
 
             <div class="time" style="text-align: left; padding: 5px; text-align: right; display: none;">
                 @if (Model.ModificationTime == Model.CreationTime || Model.ModificationTime < Model.CreationTime)

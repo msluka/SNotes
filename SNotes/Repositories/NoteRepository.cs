@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
@@ -106,7 +107,8 @@ namespace SNotes.Repositories
                     Content = n.Content,
                     Id = n.Id,
                     CreationTime = n.CreationTime,
-                    ModificationTime = n.ModificationTime
+                    ModificationTime = n.ModificationTime,
+                    Labels = n.Labels.ToList()
 
                 })
                 .OrderByDescending(n => n.CreationTime);
@@ -123,7 +125,8 @@ namespace SNotes.Repositories
                     Title = n.Title,
                     Content = n.Content,
                     CreationTime = n.CreationTime,
-                    ModificationTime = n.ModificationTime
+                    ModificationTime = n.ModificationTime,
+                    Labels = n.Labels.ToList()
 
                 })
                 .OrderByDescending(n => n.CreationTime);
@@ -143,7 +146,8 @@ namespace SNotes.Repositories
                     Content = n.Content,
                     Id = n.Id,
                     CreationTime = n.CreationTime,
-                    ModificationTime = n.ModificationTime
+                    ModificationTime = n.ModificationTime,
+                    Labels = n.Labels.ToList()
 
                 })
                 .OrderByDescending(n => n.ModificationTime);
@@ -197,11 +201,22 @@ namespace SNotes.Repositories
 
                 note.Labels.Add(label);
 
-                
             }
 
             _dbContext.SaveChanges();
             
+        }
+
+        public void DeleteLabelFromNote(long id)
+        {
+            
+            var label = _dbContext.Labels.Single(x => x.Id == id);
+
+            
+            _dbContext.Labels.Remove(label);
+
+            _dbContext.SaveChanges();
+
         }
     }
 }

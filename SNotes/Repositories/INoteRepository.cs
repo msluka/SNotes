@@ -18,6 +18,7 @@ namespace SNotes.Repositories
         IEnumerable<NoteGridViewModel> SortByModificationTime();
         IEnumerable<NoteGridViewModel> SortByLabelGroup(long id);
         void AddLabelToNote(AddLabelToNoteViewModel model);
+        void DeleteLabelFromNote(long id);
 
     }
 }

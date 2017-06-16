@@ -142,6 +142,11 @@ namespace SNotes.Controllers
             return View(model);
         }
 
+        public ActionResult DeleteLabelFromNote(long id)
+        {
+            _repository.DeleteLabelFromNote(id);
+            return RedirectToAction("Notelist");
+        }
 
     }
 }

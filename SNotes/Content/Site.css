@@ -1,7 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: rgb(238, 238, 238);
+    /*background: rgb(238, 238, 238);*/
+    background: #f2f2f2;
 }
 
 /* Set padding to keep content from hitting the edges #e8e8e8;*/
