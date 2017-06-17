@@ -4,19 +4,21 @@
 <li class="noteList-list-horizontal" style="float: left;">
 
     <div class="noteBox" id="noteBox">
-        @if (Model.Title != null)
-        {
-            <div class="noteTitle"  id="noteTitle" placeholder="Title" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px; overflow:hidden;">
-                <textarea style="box-sizing: border-box; border:none; overflow: hidden; resize: none; outline: none; text-indent: -54px !important;">
-                @Html.DisplayFor(n => n.Title)
-                </textarea>
-            </div>
-        }
-        <div class="noteContent" id="noteContent">
-            <textarea style="height: 100%; width: 100% !important; box-sizing: border-box;   border:none; overflow: hidden; resize: none; outline: none;">
+        <div class="editableDivs" style="overflow: hidden;">
+            @if (Model.Title != null)
+            {
+                <div class="noteTitle" id="noteTitle" contentEditable="true" placeholder="Title" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px; overflow:hidden;">
+                   
+                        @Html.DisplayFor(n => n.Title)
+                   
+                </div>
+            }
+            <div class="noteContent" id="noteContent" contentEditable="true">
+                @*<textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">*@
                 @Html.DisplayFor(n => n.Content)
-            </textarea>
 
+
+            </div>
         </div>
         <div class="noteLabel" id="noteLabel" style="position: absolute;">
             <ul style="padding: 0 5px 0 5px; direction: ltr;">
@@ -27,7 +29,7 @@
         </div>
 
 
-        <div class="noteFooter" id="noteFooter" style="min-width: 100%; background: #e20074; display: inline-block; position: absolute; bottom: 0;">
+        <div class="noteFooter" id="noteFooter" style="min-width: 100%; background: #FF3D00; display: inline-block; position: absolute; bottom: 0;">
 
             @*<div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>*@
 
@@ -45,20 +47,20 @@
                 <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => n.CreationTime)
             </div>
 
-            <div class="footerIcons" style="background: #e20074; margin-left: auto;  min-width: 100%; padding: 5px 5px 0 5px;">
+            <div class="footerIcons" style="background: #FF3D00; margin-left: auto;  min-width: 100%; padding: 5px 5px 0 5px;">
 
-                <div style="float: left; background: #e20074; color: #fdffff; width: 60%">
+                <div style="float: left; background: #FF3D00; color: #fdffff; width: 60%">
                     @Model.CreationTime.ToString("d MMM yyyy")
                 </div>
                 <div>
 
-                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%;">
+                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%;">
                         <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
                             <span class="glyphicon glyphicon-th-list btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0 5px 0 5px; border-width: 0 1px 4px 1px;"></span>
                         </a>
                     </div>
 
-                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
                         @using (Html.BeginForm("Delete", "Note"))
                         {
                             <input type="hidden" name="id" value="@Model.Id" id="id" style="display: none;" />
@@ -69,13 +71,13 @@
                         }
                     </div>
 
-                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
                         <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
                             <span class="glyphicon glyphicon-pencil btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
                         </a>
                     </div>
 
-                    <div style="float: right; background: #e20074; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
                         <a href="@Url.Action("AddLabelToNote", "Note", new {id = Model.Id}, null)">
                             <span class="glyphicon glyphicon-tag btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
                         </a>

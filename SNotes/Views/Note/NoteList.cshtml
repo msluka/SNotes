@@ -28,6 +28,25 @@
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     }
 
+    .noteContent ::-webkit-scrollbar {
+        width: 0;
+        background: transparent;
+    }
+
+    .expand ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .expand::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 5px;
+    }
+
+    .expand::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+
     .noteBox {
         padding: 0;
         height: 200px;
@@ -41,15 +60,25 @@
     .expand {
         position: fixed;
         left: 50%;
-        top: 50%;
-        margin-top: -32vh;
+        top: 0;
+        margin-top: 65px;
         margin-left: -30vw;
         z-index: 100;
         width: 60vw;
-        height: 70vh;
+        height: 85vh;
         transition: 0.2s ease-in-out;
         transform: rotate(360deg);
         animation-direction: alternate;
+        border-radius: 10px;
+    }
+
+    .expandTextarea {
+        font-size: 18px;
+    }
+
+    textarea {
+        font-size: 16px;
+        font-family: 'Roboto Slab','Times New Roman',serif;
     }
 </style>
 
@@ -129,31 +158,35 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-   
+
 
     $(document).ready(function () {
 
-        $("input[type='text'], textarea").attr('spellcheck', false);
+
+        //$("input[type='text'], textarea").attr('spellcheck', false);
+        $(".editableDivs").attr('spellcheck', false);
 
         $(function () {
 
-            $('li').each(function() {
-                
+            $('li').each(function () {
+
                 var noteBoxHeight = $(".noteBox", this).outerHeight();
                 var titleHeight = $(".noteTitle", this).outerHeight();
-
                 var noteLabelHeight = $(".noteLabel", this).outerHeight();
                 var noteFooterHeight = $(".noteFooter", this).outerHeight();
 
                 $(".noteLabel").css({ bottom: noteFooterHeight });
 
-                $(".noteContent", this).outerHeight(noteBoxHeight - titleHeight - noteLabelHeight - noteFooterHeight);
+                $(".editableDivs", this).outerHeight(noteBoxHeight - noteLabelHeight - noteFooterHeight);
+
+                var editableDivsHeight = $(".editableDivs", this).outerHeight();
+
+                $(".noteContent", this).outerHeight(editableDivsHeight - titleHeight);
 
             });
-            
+
 
         });
-
 
 
         $(".noteContent, .noteTitle").on("click",
@@ -172,17 +205,19 @@
 
                     clone.appendTo(".notes").addClass("expand");
                     clone.attr('id', 'temporaryId');
+                    clone.find("textarea").addClass("expandTextarea");
 
                     var noteBoxHeight = $(".expand").outerHeight();
                     var titleHeight = $(".expand").find(".noteTitle").outerHeight();
-
                     var noteLabelHeight = $(".expand").find(".noteLabel").outerHeight();
                     var noteFooterHeight = $(".expand").find(".noteFooter").outerHeight();
 
                     $(".expand").find(".noteLabel").css({ bottom: noteFooterHeight });
 
-                    $(".expand").find(".noteContent").outerHeight(noteBoxHeight - titleHeight - noteLabelHeight - noteFooterHeight);
+                    $(".expand").find(".editableDivs").outerHeight(noteBoxHeight - noteLabelHeight - noteFooterHeight);
 
+                    var editableDivsHeight = $(".expand").find(".editableDivs").outerHeight();
+                    $(".expand").find(".noteContent").outerHeight(editableDivsHeight - titleHeight);
 
                 };
 
@@ -196,6 +231,7 @@
                         $("#temporaryId, this").remove();
 
                         $(".expand").removeClass("expand");
+                        $(".expandTextarea").removeClass("expandTextarea");
 
                         $("#temporaryId").removeAttr("id");
                     }

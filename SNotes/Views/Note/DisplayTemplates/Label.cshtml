@@ -2,21 +2,20 @@
 
 
 <li style="float:right; list-style-type: none; padding-right: 5px; text-align: right;">
-    <div style="display: inline; background: #CFD8DC; color: #555555; font-weight: bold; border-radius: 5px; padding: 0 3px 0 3px;">
+    <div style="display: inline; background: #e1e1e1; color: #555555; font-weight: bold; border-radius: 5px; padding: 0 3px 0 3px;">
         <div style="display: inline;">@Model.Name</div>
         @*<div style="display: inline;"><a href="@Url.Action("DeleteLabelFromNote", "Note", new {id = Model.Id}, null)">
                 X
             </a></div>*@
 
-
         @using (Html.BeginForm("DeleteLabelFromNote", "Note", FormMethod.Post,
-            new { style = "background:#CFD8DC; display:inline;", @class = "myClass" }))
+            new { style = "background:#e1e1e1; display:inline;", @class = "myClass" }))
     {
 
             <input type="hidden" name="id" value="@Model.Id" id="id" style="display: none;" />
 
             <input type="submit" value="x"
-                   style="background: #CFD8DC; border: none; outline: none; line-height: 1; color: #e20074; text-decoration: none; cursor: pointer; padding: 0; margin: 0;" />
+                   style="background: #e1e1e1; border: none; outline: none; line-height: 1; color: #e20074; text-decoration: none; cursor: pointer; padding: 0; margin: 0;" />
             @*<button type="submit">x</button>*@
 
         }
