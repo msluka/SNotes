@@ -4,21 +4,23 @@
 <li class="noteList-list-horizontal" style="float: left;">
 
     <div class="noteBox" id="noteBox">
-        <div class="editableDivs" style="overflow: hidden;">
-            @if (Model.Title != null)
+        <div class="editableDivs">
+                <textarea class="noteTitle" id="title" placeholder="Title">@Html.DisplayFor(n => n.Title)</textarea>
+                <textarea class="noteContent">@Html.DisplayFor(n => n.Content)</textarea>
+            @*@if (Model.Title != null)
             {
-                <div class="noteTitle" id="noteTitle" contentEditable="true" placeholder="Title" style="font-weight: bold; font-size: 120%; padding: 5px 5px 0 5px; overflow:hidden;">
-                   
+                <div class="noteTitle" id="noteTitle" contentEditable="true" placeholder="Title" style="font-weight: bold; font-size: 120%;  overflow:hidden;">
+                    <textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">
                         @Html.DisplayFor(n => n.Title)
-                   
+                   </textarea>
                 </div>
             }
-            <div class="noteContent" id="noteContent" contentEditable="true">
-                @*<textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">*@
+            <div class="noteContent" id="noteContent">
+                <textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">
                 @Html.DisplayFor(n => n.Content)
 
-
-            </div>
+                </textarea>
+            </div>*@
         </div>
         <div class="noteLabel" id="noteLabel" style="position: absolute;">
             <ul style="padding: 0 5px 0 5px; direction: ltr;">
