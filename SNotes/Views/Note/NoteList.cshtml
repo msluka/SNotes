@@ -13,103 +13,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    ::-webkit-scrollbar {
-        width: 12px;
-        display: none;
-    }
-
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-    }
-
-    .noteContent ::-webkit-scrollbar {
-        width: 0;
-        background: transparent;
-    }
-
-    .expand ::-webkit-scrollbar {
-        width: 12px;
-    }
-
-    .expand::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        border-radius: 5px;
-    }
-
-    .expand::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-    }
-
-    .noteBox {
-        padding: 0;
-        height: 250px;
-        width: 200px;
-        margin: 5px;
-        position: relative;
-        background: white;
-        box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;
-    }
-
-    .expand {
-        position: fixed;
-        left: 50%;
-        top: 0;
-        margin-top: 65px;
-        margin-left: -30vw;
-        z-index: 100;
-        width: 60vw;
-        height: 85vh;
-        transition: 0.2s ease-in-out;
-        transform: rotate(360deg);
-        animation-direction: alternate;
-        border-radius: 10px;
-    }
-
-    .expandEditableDivs {
-        font-size: 18px;
-    }
-
-    .editableDivs {
-        overflow-y: scroll;
-        padding: 5px 5px 0 5px;
-        font-size: 16px;
-        font-family: 'Roboto Slab','Times New Roman', serif;
-    }
-
-    textarea {
-        font-size: 16px;
-        font-family: 'Roboto Slab','Times New Roman',serif;
-     
-        width: 100% !important;
-        box-sizing: border-box;
-        border: none;
-        resize: none;
-        outline: none;
-        text-align: left;
-    }
-    .noteTitle {
-        font-weight: bold;
-       
-    }
-
-    .noteContent {
-        margin-top: -7px;
-    }
- 
-
-   
-
-
-  
-</style>
 
 <div class="row">
     <div class="col-md-3">
@@ -122,54 +25,42 @@
 
         <div class="notesContainer" style="width: 85%">
             <div class="notesBox" style="margin: auto;">
-
-                <div class="title&noteAdd" style="display: flex;">
-                    <div class="title">
-                        <h2>SNotes</h2>
+                <br />
+                <div class="titleAndnoteAdd">
+                    @*<div class="title">
+                        <a href="@Url.Action("NoteList", "Note", null, null)">
+                            <h2><b><i>SNotes</i></b></h2>
+                        </a>
+                    </div>*@
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div id="homeWrapper">
+                        <a href="@Url.Action("NoteList", "Note", null, null)">
+                            <span id="home" class="glyphicon glyphicon-home"></span>
+                        </a>
                     </div>
-                    <div class="noteAdd" style="margin: 25px 0 0 10px;">
+
+                    <div id="sortWrapper">
+                        <a href="@Url.Action("Sort", "Note", null, null)">
+                            <span id="sort"class="glyphicon glyphicon-sort"></span>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                    
+
+                    <div id="addNoteWrapper">
                         <a href="@Url.Action("Create", "Note", null, null)">
-                            <span class="glyphicon glyphicon-plus-sign" style="color: #555555; font-size: 20px; padding: 0 20px 0 0;"></span>
+                            <span id="addNote"class="glyphicon glyphicon-plus"></span>
                         </a>
                     </div>
                 </div>
-
-                <div class="searchAndSort" style="width: 100%; margin: 10px 0 10px 0;">
-
-                    <div style="display: flex; width: 50%; margin:auto;">
-                        <div>
-                            @using (Html.BeginForm("Sort", "Note"))
-                            {
-                                @Html.Hidden("sortOrder", "ModificationTime")
-
-                                <button type="submit" class="btn btn-link">
-                                    <span class="glyphicon glyphicon-sort" style="color: #555555; font-size: 12px;"></span>
-                                </button>
-                            }
-                        </div>
-                        <div>
-                            @using (Html.BeginForm("Search", "Note"))
-                            {
-                                <div style="display: flex;">
-                                    <div>
-                                        <span class="searchBox" style="width: 200px; height: 40px; border-radius: 5px; font-weight: bold; font-size: 20px; padding: 3px; margin: 10px 0 10px 0;">
-
-                                            @Html.TextBox("searchString")
-
-                                        </span>
-                                    </div>
-
-                                    <div>
-                                        <button type="submit" class="btn btn-link" style="padding: 0 0 0 0;">
-                                            <span class="glyphicon glyphicon-search" style="color: #555555; font-size: 12px; margin: 8px 0 0 8px"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-
-                    </div>
-                </div>
+                
                 <div class="notesListContainer">
                     <div class="notes" style="position: relative;">
                         <ul style="list-style-type: none; padding-left: 0;">
@@ -185,109 +76,4 @@
     <div class="col-md-1">     </div>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-
-
-    $(document).ready(function () {
-
-
-        //$("input[type='text'], textarea").attr('spellcheck', false);
-        $(".editableDivs").attr('spellcheck', false);
-
-        $(function () {
-
-            $('li').each(function () {
-
-                var noteBoxHeight = $(".noteBox", this).outerHeight();
-                var titleHeight = $(".noteTitle", this).outerHeight();
-                var noteLabelHeight = $(".noteLabel", this).outerHeight();
-                var noteFooterHeight = $(".noteFooter", this).outerHeight();
-
-                $(".noteLabel").css({ bottom: noteFooterHeight });
-
-                $(".editableDivs", this).outerHeight(noteBoxHeight - noteLabelHeight - noteFooterHeight);
-
-                var editableDivsHeight = $(".editableDivs", this).outerHeight();
-
-                $(".noteContent", this).outerHeight(editableDivsHeight - titleHeight);
-
-            });
-
-
-        });
-
-
-
-        $(function () {
-
-            $('textarea').each(function () {
-
-                if (this.clientHeight < this.scrollHeight) { this.style.height = this.scrollHeight + 'px' };
-
-            });
-
-
-        });
-
-
-        $(".noteContent, .noteTitle").on("click",
-            function () {
-
-                var parent = $(this).closest('.noteBox');
-
-                if ($('#temporaryId').length) {
-
-
-
-                } else {
-
-
-                    var clone = parent.clone();
-
-                    clone.appendTo(".notes").addClass("expand");
-                    clone.attr('id', 'temporaryId');
-                    clone.find(".editableDivs").addClass(".expandEditableDivs");
-
-                    var noteBoxHeight = $(".expand").outerHeight();
-                    var titleHeight = $(".expand").find(".noteTitle").outerHeight();
-                    var noteLabelHeight = $(".expand").find(".noteLabel").outerHeight();
-                    var noteFooterHeight = $(".expand").find(".noteFooter").outerHeight();
-
-                    $(".expand").find(".noteLabel").css({ bottom: noteFooterHeight });
-
-                    $(".expand").find(".editableDivs").outerHeight(noteBoxHeight - noteLabelHeight - noteFooterHeight);
-
-                    var editableDivsHeight = $(".expand").find(".editableDivs").outerHeight();
-                    $(".expand").find(".noteContent").outerHeight(editableDivsHeight - titleHeight);
-
-                };
-
-
-                $("body").click(function (e) {
-
-                    if ($(e.target).closest("#temporaryId").length) {
-                        return false;
-                    }
-                    else {
-                        $("#temporaryId, this").remove();
-
-                        $(".expand").removeClass("expand");
-                        $(".expandTextarea").removeClass("expandTextarea");
-
-                        $("#temporaryId").removeAttr("id");
-                    }
-
-                });
-
-                $(".noteBox").click(function (event) {
-
-                    event.stopPropagation();
-
-                });
-
-            });
-    });
-
-
-</script>
+@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>*@

@@ -31,7 +31,7 @@
         </div>
 
 
-        <div class="noteFooter" id="noteFooter" style="min-width: 100%; background: #FF3D00; display: inline-block; position: absolute; bottom: 0;">
+        <div class="noteFooter" id="noteFooter" style="min-width: 100%; background: red; display: inline-block; position: absolute; bottom: 0;">
 
             @*<div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>*@
 
@@ -49,20 +49,20 @@
                 <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => n.CreationTime)
             </div>
 
-            <div class="footerIcons" style="background: #FF3D00; margin-left: auto;  min-width: 100%; padding: 5px 5px 0 5px;">
+            <div class="footerIcons" style="background: red; margin-left: auto;  min-width: 100%; padding: 5px 5px 0 5px;">
 
-                <div style="float: left; background: #FF3D00; color: #fdffff; width: 60%">
+                <div style="float: left; background: red; color: #fdffff; width: 60%">
                     @Model.CreationTime.ToString("d MMM yyyy")
                 </div>
                 <div>
 
-                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%;">
+                    <div style="float: right; background: red; color: #fdffff; width: 10%;">
                         <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
                             <span class="glyphicon glyphicon-th-list btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0 5px 0 5px; border-width: 0 1px 4px 1px;"></span>
                         </a>
                     </div>
 
-                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right; background: red; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
                         @using (Html.BeginForm("Delete", "Note"))
                         {
                             <input type="hidden" name="id" value="@Model.Id" id="id" style="display: none;" />
@@ -73,13 +73,13 @@
                         }
                     </div>
 
-                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right; background: red; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
                         <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
                             <span class="glyphicon glyphicon-pencil btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
                         </a>
                     </div>
 
-                    <div style="float: right; background: #FF3D00; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right; background: red; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
                         <a href="@Url.Action("AddLabelToNote", "Note", new {id = Model.Id}, null)">
                             <span class="glyphicon glyphicon-tag btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
                         </a>

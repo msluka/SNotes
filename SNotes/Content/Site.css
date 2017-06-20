@@ -30,3 +30,388 @@
         color: blue;
         text-decoration: underline;
     }
+
+::-webkit-scrollbar {
+    width: 12px;
+    display: none;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.noteContent ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.expand ::-webkit-scrollbar {
+    width: 12px;
+}
+
+.expand::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+.expand::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.noteBox {
+    padding: 0;
+    height: 230px;
+    width: 200px;
+    margin: 5px;
+    position: relative;
+    background: white;
+    box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;
+}
+
+.expand {
+    position: fixed;
+    left: 50%;
+    top: 0;
+    margin-top: 65px;
+    margin-left: -30vw;
+    z-index: 100;
+    width: 60vw;
+    height: 85vh;
+    transition: 0.2s ease-in-out;
+    transform: rotate(360deg);
+    animation-direction: alternate;
+    border-radius: 10px;
+}
+
+.expandEditableDivs {
+    font-size: 18px;
+}
+
+.editableDivs {
+    overflow-y: hidden;
+    padding: 5px 5px 0 5px;
+    font-size: 16px;
+    font-family: 'Roboto Slab','Times New Roman', serif;
+    cursor: default;
+}
+
+textarea {
+    font-size: 16px;
+    font-family: 'Roboto Slab','Times New Roman',serif;
+    width: 100% !important;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    outline: none;
+    text-align: left;
+    cursor: default;
+
+}
+.noteTitle {
+    font-weight: bold;
+       
+}
+
+.noteContent {
+    margin-top: -7px;
+}
+
+
+.searchAndSort {
+    width: 100%; 
+  
+}
+
+.searchAndSortInner {
+    width: 350px;
+    min-width: 250px;
+  margin:auto;
+  position: fixed;
+    background: white;
+    border-radius: 5px;
+    padding-top: 5px;
+    text-align: center;
+    margin: 8px 0 0 0;
+    left: calc(50% - 175px);
+
+    
+}
+
+
+.searchAndSortInner div {
+    display: inline-block;
+   
+}
+
+.searchAndSortInner button {
+    outline: none !important;
+   
+}
+
+#sortButtonIcon {
+    color: #555555; 
+    font-size: 12px;
+   
+   
+}
+
+#searchButtonIcon {
+    color: #555555; 
+    font-size: 12px;
+    margin: 0 0 0 0px;
+    
+}
+
+#searchString {
+    width: 250px !important;
+    padding: 2px;
+    outline: none;
+    border: none;
+    color: #555555;
+    font-size: 18px;
+    font-family: 'Roboto Slab','Times New Roman',serif;
+}
+
+.title a{
+    text-decoration: none;
+}
+
+.notesListContainer {
+  
+    overflow-y: scroll;
+    height: calc(100vh - 160px);
+}
+
+.notesListContainer::-webkit-scrollbar {
+    width: 7px;
+    display: block;
+    
+   
+}
+
+.notesListContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+   
+}
+
+.notesListContainer::-webkit-scrollbar-thumb {
+   
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);*/
+    
+    background: red;
+   
+}
+
+.notes {
+    margin-top: -14px;
+           
+       }
+
+#labelIconsInPartial {
+
+    padding: 0 10px 0 0;
+    color: red;
+
+   
+}
+
+.createAndEditLabels {
+    position: relative;                      
+}
+
+#addLabelIconInPartialWrapper {
+
+    width: 28px;
+    height: 28px;
+    margin: 0 20px 0 0;
+    background: #00C853;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 3px 3px 5px gray;
+    
+}
+#addLabelIconInPartialWrapper:hover {
+    top: 2px;
+}
+
+#addLabelIconInPartial {
+    
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: calc(50% - 6px);
+    top: calc(50% - 9px);
+}
+
+
+
+#editLabelsToggleWrapper {
+    width: 28px;
+    height: 28px;
+    background: orange;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 3px 3px 5px gray;
+
+}
+
+#editLabelsToggleWrapper:hover {
+    top: 2px;
+}
+
+#editLabelsToggle {
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: calc(50% - 7px);
+    top: calc(50% - 8px);
+  
+}
+
+.editLabelInPartial {
+    color: #303F9F; 
+    font-size: 12px; 
+    padding: 0 5px 0 5px;
+    display: none;
+    
+   
+   
+}
+
+.deleteLabelInPartial {
+    color: red;
+    font-size: 12px;
+    display: none;
+
+}
+
+
+
+.createAndEditLabels div{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.labelNamesInPartial {
+    color: #555555;
+    font-size: 18px;
+    /*font-family: 'Roboto Slab','Times New Roman',serif;*/
+    /*font-weight: bold;*/
+    
+}
+
+
+
+#addLabelIconInPartial {
+    
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: calc(50% - 6px);
+    top: calc(50% - 9px);
+}
+
+.titleAndnoteAdd {
+    position: relative;
+    height: 50px;
+    margin: 0 0 20px 0;
+  
+}
+
+.titleAndnoteAdd div {
+    display: inline-block;
+    position: absolute;
+    
+    
+}
+
+
+#addNoteWrapper:hover {
+  
+    top: 22px;
+}
+
+#homeWrapper {
+
+    width: 28px;
+    height: 28px;
+    margin: 0 20px 0 5px;
+    background: red;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 3px 3px 5px gray;
+    top: 20px;
+   
+    
+}
+
+#homeWrapper:hover {
+  
+    top: 22px;
+}
+
+#home {
+    
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: calc(50% - 7px);
+    top: calc(50% - 9px);
+    
+} 
+
+#sortWrapper {
+
+    width: 28px;
+    height: 28px;
+    margin: 0 20px 0 0;
+    background: orange;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 3px 3px 5px gray;
+    top: 20px;
+   
+}
+
+#sortWrapper:hover {
+  
+    top: 22px;
+}
+
+#sort {
+    
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: calc(50% - 7px) !important;
+    top: calc(50% - 8px);
+} 
+
+#addNoteWrapper {
+
+    width: 28px;
+    height: 28px;
+    margin: 0 20px 0 0;
+    background: #00C853;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 3px 3px 5px gray;
+    top: 20px;
+    
+}
+
+#addNote {
+    
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: calc(50% - 6px);
+    top: calc(50% - 9px);
+} 

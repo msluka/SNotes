@@ -2,18 +2,25 @@
 
 @{
     Layout = null;
+    
 }
 
+
+    <br/>
 <h2>Labels</h2>
 
 
 
-<ul style="list-style: none;">
+<ul style="list-style: none; padding-left: 0;">
     <li>
-        
-        <a href="@Url.Action("Create", "Label", null, null)">
-            <span class="glyphicon glyphicon-plus-sign" style="color: #555555; font-size: 20px; padding: 0 20px 0 0;"></span>
-        </a>
+        <div class="createAndEditLabels">
+            <div id="addLabelIconInPartialWrapper">
+                <a href="@Url.Action("Create", "Label", null, null)">
+                    <span id="addLabelIconInPartial" class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+            <div id="editLabelsToggleWrapper"><span id="editLabelsToggle" class="glyphicon glyphicon-pencil"></span></div>
+        </div>
     </li>
     <span>&nbsp</span>
 
@@ -22,25 +29,26 @@
         <li>
            
             <div style="display: inline-flex;">
-                <span class="glyphicon glyphicon-tag" style="padding: 0 10px 0 0; color: #e20074"></span>
                
-
+                <span id="labelIconsInPartial" class="glyphicon glyphicon-tag"></span>
 
                 <a href="@Url.Action("Edit", "Label", new {id = label.Id}, null)">
-                    <span class="glyphicon glyphicon-pencil" style="color: #555555; font-size: 12px; padding: 0 5px 0 5px;"></span>
+                    <span id="editLabelInPartial" class="glyphicon glyphicon-pencil editLabelInPartial"></span>
                 </a>
 
                 @using (Html.BeginForm("Delete", "Label"))
                 {
-                    <input type="hidden" name="id" value="@label.Id" id="id" style="display: none;" />
-              
+                    <input type="hidden" name="id" value="@label.Id" id="id" style="display: none;"/>
+
                     <button type="submit" class="btn btn-link" style="padding: 0 10px 0 5px;">
-                        <span class="glyphicon glyphicon-trash" style="color:#555555; font-size: 12px;"></span>
+                        <span id="deleteLabelInPartial" class="glyphicon glyphicon-trash deleteLabelInPartial"></span>
                     </button>
                 }
+               
+                @Html.ActionLink(label.Name, "SortByLabelGroup", "Note", new {id = label.Id}, new { @class = "labelNamesInPartial" })
 
-                @Html.ActionLink(label.Name, "SortByLabelGroup", "Note", new { id = label.Id }, null)
             </div>
         </li>
     }
 </ul>
+

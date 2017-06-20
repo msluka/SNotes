@@ -100,7 +100,7 @@ namespace SNotes.Repositories
 
             var memberId = HttpContext.Current.User.Identity.GetUserId();
 
-            return _dbContext.Notes.Where(n => n.UserId == memberId && n.Content.Contains(searchString))
+            return _dbContext.Notes.Where(n => n.UserId == memberId && (n.Content.Contains(searchString) || n.Title.Contains(searchString)))
                 .Select(n => new NoteGridViewModel
                 {
                     Title = n.Title,

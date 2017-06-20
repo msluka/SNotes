@@ -12,21 +12,51 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background:#FF3D00; color: #ffffff; height: 65px;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background: red; color: #ffffff; height: 65px;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
+                
+               
                 @Html.ActionLink("SNotes", "NoteList", "Note", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" style="background: red;">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    <li>
+                        <div class="searchAndSort">
+                            <div class="searchAndSortInner">
+                                @*<div class="sortButton">
+                                    @using (Html.BeginForm("Sort", "Note"))
+                                    {
+                                        @Html.Hidden("sortOrder", "ModificationTime")
+
+                                        <button type="submit" class="btn btn-link">
+                                            <span id="sortButtonIcon" class="glyphicon glyphicon-sort"></span>
+                                        </button>
+                                    }
+                                </div>*@
+                                <div class="searchBoxAndSearchBitton">
+                                    @using (Html.BeginForm("Search", "Note"))
+                                    {
+                                    @*@Html.TextBox("searchString")*@
+                                        <input id="searchString" name="searchString" type="text" value="" placeholder="Search">
+
+                                        <button type="submit" class="btn btn-link">
+                                            <span id="searchButtonIcon" class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
 
                 @Html.Partial("_LoginPartial")
@@ -35,10 +65,10 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
+        @*<hr />*@
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - SNotes</p>
-        </footer>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
