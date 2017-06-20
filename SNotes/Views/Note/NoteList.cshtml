@@ -44,11 +44,32 @@
                         </a>
                     </div>
 
-                    <div id="sortWrapper">
+                    @*<div id="sortWrapper">
                         <a href="@Url.Action("Sort", "Note", null, null)">
-                            <span id="sort"class="glyphicon glyphicon-sort"></span>
+                            <span id="sort" class="glyphicon glyphicon-sort"></span>
                         </a>
+                    </div>*@
+                    
+                    
+                    
+                    <div id="sortWrapper" class="sortButton">
+                        @using (Html.BeginForm("Sort", "Note"))
+                        {
+                            @Html.Hidden("sortOrder", "ModificationTime")
+
+                            <button type="submit" class="btn btn-link">
+                                <span id="sort" class="glyphicon glyphicon-sort"></span>
+                            </button>
+                        }
                     </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+
                     
                     
                     

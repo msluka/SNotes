@@ -376,15 +376,20 @@ textarea {
     border-radius: 50%;
     position: relative;
     box-shadow: 3px 3px 5px gray;
-    top: 20px;
+    top: 7px;
+    
    
 }
 
 #sortWrapper:hover {
   
-    top: 22px;
+    top: 9px;
 }
 
+#sortWrapper button {
+    outline: none;
+    
+}
 #sort {
     
     position: absolute;
@@ -392,6 +397,7 @@ textarea {
     font-size: 14px;
     left: calc(50% - 7px) !important;
     top: calc(50% - 8px);
+   
 } 
 
 #addNoteWrapper {
