@@ -101,7 +101,7 @@
 
                 var editableDivsHeight = $(".expand").find(".editableDivs").outerHeight();
                 $(".expand").find(".noteContent").outerHeight(editableDivsHeight - titleHeight);
-
+      
             };
        
 

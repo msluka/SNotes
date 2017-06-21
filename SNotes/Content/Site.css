@@ -463,5 +463,12 @@ textarea {
     
 }
 
+#cancelCreateNote {
+    color: white !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    font-size: 18px !important;
+    margin: 0 0 0 6px;
+}
  
  
