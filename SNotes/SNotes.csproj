@@ -309,6 +309,8 @@
     <Content Include="Views\Note\AddLabelToNote.cshtml" />
     <Content Include="Views\Note\DisplayTemplates\NoteGridViewModel.cshtml" />
     <Content Include="Views\Note\DisplayTemplates\Label.cshtml" />
+    <Content Include="Views\Note\CreateNewNote.cshtml" />
+    <Content Include="Views\Shared\_noteMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,16 +44,36 @@
     });
 
 
-    
+   
+    //window.setInterval(function(){
+    //    $(function () {
+
+    //        $('textarea').each(function () {
+
+    //            if (this.clientHeight < this.scrollHeight) { this.style.height = this.scrollHeight + 'px' };
+
+    //        });
+    //    });
+    //}, 100);
+
+
     $(function () {
-
-        $('textarea').each(function () {
-
-            if (this.clientHeight < this.scrollHeight) { this.style.height = this.scrollHeight + 'px' };
-
-        });
+        //'use strict';
+        $("textarea").on('change keyup paste input', function () {
+            $(this).attr("rows", Math.round($(this).val().split("\n").length || 1, $(this).attr("rows") || 1));
+            $(this).css("width", $(this).css("width"));
+        }).trigger('change');
     });
+    
+    //$(function () {
 
+    //    $('textarea').each(function () {
+
+    //        if (this.clientHeight < this.scrollHeight) { this.style.height = this.scrollHeight + 'px' };
+
+    //    });
+    //});
+    
 
     $(".noteContent, .noteTitle").on("click",
         function () {

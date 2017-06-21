@@ -4,7 +4,6 @@
 
 @model IEnumerable<SNotes.ViewModels.NoteGridViewModel>
 
-
 @{
     ViewBag.Title = "SNotes";
 }
@@ -27,31 +26,13 @@
             <div class="notesBox" style="margin: auto;">
                 <br />
                 <div class="titleAndnoteAdd">
-                    @*<div class="title">
-                        <a href="@Url.Action("NoteList", "Note", null, null)">
-                            <h2><b><i>SNotes</i></b></h2>
-                        </a>
-                    </div>*@
-                    
-                    
-                    
-                    
-                    
-                    
+                   
                     <div id="homeWrapper">
                         <a href="@Url.Action("NoteList", "Note", null, null)">
                             <span id="home" class="glyphicon glyphicon-home"></span>
                         </a>
                     </div>
-
-                    @*<div id="sortWrapper">
-                        <a href="@Url.Action("Sort", "Note", null, null)">
-                            <span id="sort" class="glyphicon glyphicon-sort"></span>
-                        </a>
-                    </div>*@
-                    
-                    
-                    
+                 
                     <div id="sortWrapper" class="sortButton">
                         @using (Html.BeginForm("Sort", "Note"))
                         {
@@ -62,18 +43,6 @@
                             </button>
                         }
                     </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-
-                    
-                    
-                    
-                    
 
                     <div id="addNoteWrapper">
                         <a href="@Url.Action("Create", "Note", null, null)">
@@ -97,4 +66,3 @@
     <div class="col-md-1">     </div>
 </div>
 
-@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>*@

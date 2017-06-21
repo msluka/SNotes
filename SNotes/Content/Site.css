@@ -421,3 +421,47 @@ textarea {
     left: calc(50% - 6px);
     top: calc(50% - 9px);
 } 
+
+#noteBoxInCreateNoteView {
+    width: 100%;
+    height: calc(100vh - 180px);
+   
+}
+
+#noteBoxInCreateNoteView textarea {
+
+    font-size: 16px;
+    font-family: 'Roboto Slab','Times New Roman',serif;
+    width: 100% !important;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    outline: none;
+    text-align: left;
+    cursor: default;
+    
+}
+
+ #noteBoxInCreateNoteView button {
+        float: right;
+        color: white;
+        background: red;
+     border: none;
+     outline: none;
+     font-weight: bold;
+  
+     font-size: 18px;
+       
+     /*pointer-events:none;*/
+    }
+ 
+.editableDivs textarea {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+
+    
+}
+
+ 
+ 

@@ -1,23 +1,124 @@
-﻿@using System.Web.Mvc.Html
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@using System.Web.Mvc.Html
 @using Microsoft.AspNet.Identity
 @model SNotes.ViewModels.AddNoteViewModel
-@{
-    ViewBag.Title = "Create";
-}
+@*@{
+        ViewBag.Title = "Create";
+    }*@
 
-<h2>New</h2>
 
-@using(Html.BeginForm("Create", "Note"))
-{ 
-    <div class="form-group">
-        @Html.TextAreaFor(m => m.Title, new { @class = "form-control" })
-       
-        @Html.LabelFor(m => m.Content)
 
-        @Html.TextAreaFor(m => m.Content, new {@class = "form-control"})
+
+<div class="row">
+    <div class="col-md-3">
+
+        @{Html.RenderAction("LabelList", "Label"); }
 
     </div>
-    
-    <button type="submit" class="btn btn-default">Submit</button>
-}
+
+    <div class="col-md-8">
+        <div style="width: 85%">
+            @{
+                Html.RenderPartial("_noteMenuPartial");
+            }
+
+
+            @using (Html.BeginForm("Create", "Note"))
+            {
+                @*<div class="form-group">
+                        @Html.TextAreaFor(m => m.Title, new {@class = "form-control"})
+
+                        @Html.LabelFor(m => m.Content)
+
+                        @Html.TextAreaFor(m => m.Content, new {@class = "form-control"})
+
+                    </div>*@
+
+
+                <div class="form-group">
+                    <div class="noteBox" id="noteBoxInCreateNoteView">
+                        <div class="editableDivs">
+
+
+                            @Html.TextArea("title", @Model.Title, new { @class = "form-control noteTitle", @placeholder = "Title" })
+
+
+                            @Html.TextArea("content", @Model.Content, new { @class = "form-control noteContent", @placeholder = "Text..." })
+
+                        </div>
+
+                        <div class="noteFooter" id="noteFooterInCreateNoteView" style="min-width: 100%; background: red; display: inline-block; position: absolute; bottom: 0;">
+                            <button type="submit">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+
+                @*<button type="submit" class="btn btn-default">Save</button>*@
+            }
+        </div>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using System.Web.Mvc.Html
+    @using Microsoft.AspNet.Identity
+    @model SNotes.ViewModels.AddNoteViewModel
+    @{
+        ViewBag.Title = "Create";
+    }
+
+    <h2>New</h2>
+
+    @using(Html.BeginForm("Create", "Note"))
+    {
+        <div class="form-group">
+            @Html.TextAreaFor(m => m.Title, new { @class = "form-control" })
+
+            @Html.LabelFor(m => m.Content)
+
+            @Html.TextAreaFor(m => m.Content, new {@class = "form-control"})
+
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    }*@
 

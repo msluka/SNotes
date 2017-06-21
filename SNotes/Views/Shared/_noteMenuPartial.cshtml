@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+
+<br />
+<div class="titleAndnoteAdd">
+                   
+    <div id="homeWrapper">
+        <a href="@Url.Action("NoteList", "Note", null, null)">
+            <span id="home" class="glyphicon glyphicon-home"></span>
+        </a>
+    </div>
+                 
+    <div id="sortWrapper" class="sortButton">
+        @using (Html.BeginForm("Sort", "Note"))
+        {
+            @Html.Hidden("sortOrder", "ModificationTime")
+
+            <button type="submit" class="btn btn-link">
+                <span id="sort" class="glyphicon glyphicon-sort"></span>
+            </button>
+        }
+    </div>
+
+    <div id="addNoteWrapper">
+        <a href="@Url.Action("Create", "Note", null, null)">
+            <span id="addNote"class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</div>
