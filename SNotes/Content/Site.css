@@ -33,7 +33,7 @@
 
 ::-webkit-scrollbar {
     width: 12px;
-    display: none;
+    /*display: none;*/
 }
 
 ::-webkit-scrollbar-track {
@@ -47,8 +47,8 @@
 }
 
 .noteContent ::-webkit-scrollbar {
-    width: 0;
-    background: transparent;
+    /*width: 0;
+    background: transparent;*/
 }
 
 .expand ::-webkit-scrollbar {
@@ -94,19 +94,19 @@
     font-size: 18px;
 }
 
-.editableDivs {
-    overflow-y: hidden;
-    padding: 5px 5px 0 5px;
-    font-size: 16px;
-    font-family: 'Roboto Slab','Times New Roman', serif;
-    cursor: default;
+
+.expand > editableDivs {
+    overflow-y: scroll;
 }
+
+/*.editableDivs::-webkit-scrollbar { 
+    display: none; 
+}*/
+
 
 textarea {
     font-size: 16px;
     font-family: 'Roboto Slab','Times New Roman',serif;
-    width: 100% !important;
-    box-sizing: border-box;
     border: none;
     resize: none;
     outline: none;
@@ -114,13 +114,70 @@ textarea {
     cursor: default;
 
 }
-.noteTitle {
+
+#editableDivsInAddOrEditNoteView {
+    padding: 3px 0 0 0;
+    font-family: 'Roboto Slab', 'Times New Roman', serif !important;
+    overflow: auto;
+    cursor: default;
+}
+
+#editableDivsInAddOrEditNoteView >#title {
     font-weight: bold;
-       
+    font-size: 18px !important;
+}
+
+#editableDivsInAddOrEditNoteView >#content {
+    font-size: 18px !important;
+}
+
+
+
+#editableDivsMainView {
+    padding: 5px 5px 5px 5px;
+    font-family: 'Roboto Slab', 'Times New Roman', serif !important;
+    overflow: hidden;
+    cursor: default;
+}
+
+.titleMainView {
+    font-weight: bold;
+    font-size: 16px !important;
+}
+
+.contentMainView{
+    font-size: 16px !important;
+}
+
+
+#editableDivsMainView::-webkit-scrollbar { 
+    display: none; 
+}
+
+.titleMainView::-webkit-scrollbar { 
+    display: none; 
+}
+
+.contentMainView::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+
+
+
+.noteTitle::-webkit-scrollbar { 
+    display: none; 
 }
 
 .noteContent {
     margin-top: -7px;
+    font-size: 16px !important;
+    font-family: 'Roboto Slab', 'Times New Roman', serif !important;
+}
+
+.noteContent::-webkit-scrollbar { 
+    display: none; 
 }
 
 
@@ -190,9 +247,8 @@ textarea {
 }
 
 .notesListContainer::-webkit-scrollbar {
-    width: 7px;
+    width: 10px;
     display: block;
-    
    
 }
 
@@ -301,9 +357,9 @@ textarea {
 
 .labelNamesInPartial {
     color: #555555;
-    font-size: 18px;
-    /*font-family: 'Roboto Slab','Times New Roman',serif;*/
-    /*font-weight: bold;*/
+    font-size: 16px;
+    font-family: 'Roboto Slab','Times New Roman',serif;
+    /*font-family: 'Roboto,RobotoDraft,Helvetica,Arial',sans-serif;*/
     
 }
 
@@ -422,27 +478,28 @@ textarea {
     top: calc(50% - 9px);
 } 
 
-#noteBoxInCreateNoteView {
+#noteBoxInCreateOrEditView {
     width: 100%;
     height: calc(100vh - 180px);
    
 }
 
-#noteBoxInCreateNoteView textarea {
+#noteBoxInCreateOrEditView textarea {
 
     font-size: 16px;
     font-family: 'Roboto Slab','Times New Roman',serif;
     width: 100% !important;
     box-sizing: border-box;
-    border: none;
-    resize: none;
-    outline: none;
+    border: none !important;
+    resize: none !important;
+    outline: none !important;
+    box-shadow: none !important;
     text-align: left;
     cursor: default;
     
 }
 
- #noteBoxInCreateNoteView button {
+ #noteBoxInCreateOrEditView button {
         float: right;
         color: white;
         background: red;
@@ -455,20 +512,79 @@ textarea {
      /*pointer-events:none;*/
     }
  
-.editableDivs textarea {
+/*.editableDivs textarea {
     outline: none !important;
     border: none !important;
     box-shadow: none !important;
 
     
-}
+}*/
 
-#cancelCreateNote {
+#cancelCreateOrEditNote {
     color: white !important;
     font-weight: bold !important;
     text-decoration: none !important;
-    font-size: 18px !important;
+    font-size: 17px !important;
     margin: 0 0 0 6px;
+    padding: 4px 0 0 0;
+}
+
+/*#cotent {
+    resize: none !important;
+   
+}*/
+ 
+.footerIcons {
+    background: red;
+    color: #fdffff;  
+    
+}
+
+.footerIcons span {
+    color: #fdffff;  
 }
  
- 
+
+/*Creation and Modification Time*/
+
+.time {
+    
+    padding: 5px;
+    text-align: right;
+    display: none;
+    color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    background: gray;
+    position: absolute;
+    bottom: 40px;
+    right: 5px;
+    width: 50%;
+    opacity:0.8;
+    display: none;
+
+}
+
+#triangelForTime {
+    position: absolute;
+    bottom: -9px;
+    right: 6px;
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-left-width: 12px;
+    border-right-width: 0px;
+    border-top: 10px solid gray;
+    opacity:0.9;
+}
+
+
+
+
+
+
+
+
+
+
+
+

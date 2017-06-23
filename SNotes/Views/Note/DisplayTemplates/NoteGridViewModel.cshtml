@@ -3,24 +3,36 @@
 
 <li class="noteList-list-horizontal" style="float: left;">
 
-    <div class="noteBox" id="noteBox">
-        <div class="editableDivs">
-                <textarea class="noteTitle" id="title" placeholder="Title">@Html.DisplayFor(n => n.Title)</textarea>
-                <textarea class="noteContent">@Html.DisplayFor(n => n.Content)</textarea>
-            @*@if (Model.Title != null)
-            {
-                <div class="noteTitle" id="noteTitle" contentEditable="true" placeholder="Title" style="font-weight: bold; font-size: 120%;  overflow:hidden;">
-                    <textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">
-                        @Html.DisplayFor(n => n.Title)
-                   </textarea>
-                </div>
-            }
-            <div class="noteContent" id="noteContent">
-                <textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">
-                @Html.DisplayFor(n => n.Content)
+    <div class="noteBox" id="noteBoxMainView">
+        <div class="editableDivs" id="editableDivsMainView">
+            @*<textarea class="noteTitle" id="title" placeholder="Title">@Html.DisplayFor(n => n.Title)</textarea>*@
+            @*<textarea class="noteContent" id="content">@Html.DisplayFor(n => n.Content)</textarea>*@
 
-                </textarea>
-            </div>*@
+            @if (Model.Title == null)
+            {
+                @Html.TextArea("contentMainView", @Model.Content, new { @class = "contentMainView expanding", @placeholder = "Text...", @readonly = "readonly" })
+            }
+            else
+            {
+
+                @Html.TextArea("titleMainView", @Model.Title, new { @class = "titleMainView expanding", @placeholder = "Title", @readonly = "readonly" })
+                @Html.TextArea("contentMainView", @Model.Content, new { @class = "contentMainView expanding", @placeholder = "Text...", @readonly = "readonly" })
+            }
+
+            @*@if (Model.Title != null)
+                {
+                    <div class="noteTitle" id="noteTitle" contentEditable="true" placeholder="Title" style="font-weight: bold; font-size: 120%;  overflow:hidden;">
+                        <textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">
+                            @Html.DisplayFor(n => n.Title)
+                       </textarea>
+                    </div>
+                }
+                <div class="noteContent" id="noteContent">
+                    <textarea style="height: 100%; width: 100% !important; box-sizing: border-box; border:none; overflow: auto; resize: none; outline: none; text-align: left">
+                    @Html.DisplayFor(n => n.Content)
+
+                    </textarea>
+                </div>*@
         </div>
         <div class="noteLabel" id="noteLabel" style="position: absolute;">
             <ul style="padding: 0 5px 0 5px; direction: ltr;">
@@ -35,53 +47,70 @@
 
             @*<div class="listOfLabels" style="padding: 5px; display: none;">Labels</div>*@
 
-            <div class="time" style="text-align: left; padding: 5px; text-align: right; display: none;">
-                @if (Model.ModificationTime == Model.CreationTime || Model.ModificationTime < Model.CreationTime)
-                {
-                    <div style="display: none"></div>
-                }
-                else
-                {
-                    <text>Edited </text>
-                    @Html.DisplayFor(n => n.ModificationTime)
+            <div class="time" id="time">
+                <div>
+                    @if (Model.ModificationTime == Model.CreationTime || Model.ModificationTime < Model.CreationTime)
+                    {
+                        <text>Created</text>
+                        <br/>
+                        @Model.CreationTime.ToString("d MMM yyyy")
+                        <br/>
+                        @Model.CreationTime.ToString("HH:mm:ss")
+                    }
+                    else
+                    {
+                        <text>Last edited</text>
+                        <br/>
+                        @Model.ModificationTime.ToString("d MMM yyyy")
+                        <br/>
+                        @Model.ModificationTime.ToString("HH:mm:ss")
+                        <br/>
+                        <br/>
+                        <text>Created</text>
+                        <br/>
+                        @Model.CreationTime.ToString("d MMM yyyy")
+                        <br/>
+                        @Model.CreationTime.ToString("HH:mm:ss")
 
-                }
-                <text style="padding: 5px;">Created </text> @Html.DisplayFor(n => n.CreationTime)
+                    }
+                </div>
+                <div id="triangelForTime"></div>
+                @*<text style="padding: 5px;">Created: </text> @Html.DisplayFor(n => n.CreationTime)*@
             </div>
 
-            <div class="footerIcons" style="background: red; margin-left: auto;  min-width: 100%; padding: 5px 5px 0 5px;">
+            <div class="footerIcons" style="margin-left: auto;  min-width: 100%; padding: 1px 5px 2px 5px;">
 
-                <div style="float: left; background: red; color: #fdffff; width: 60%">
+                <div style="float: left;  width: 60%">
                     @Model.CreationTime.ToString("d MMM yyyy")
                 </div>
                 <div>
 
-                    <div style="float: right; background: red; color: #fdffff; width: 10%;">
-                        <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
-                            <span class="glyphicon glyphicon-th-list btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0 5px 0 5px; border-width: 0 1px 4px 1px;"></span>
-                        </a>
+                    <div style="float: right;   width: 10%;">
+                        @*<a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">*@
+                            <span id="info" class="glyphicon glyphicon-info-sign info" style="font-size: 14px; top: 2px; padding: 0 5px 0 5px; border: none;"></span>
+                        @*</a>*@
                     </div>
 
-                    <div style="float: right; background: red; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right;  width: 10%; padding: 0 5px 0 5px;">
                         @using (Html.BeginForm("Delete", "Note"))
                         {
                             <input type="hidden" name="id" value="@Model.Id" id="id" style="display: none;" />
 
-                            <button type="submit" class="btn btn-link" style="padding: 0; border-width: 0 1px 4px 1px;">
-                                <span class="glyphicon glyphicon-trash" style="color: #fdffff; font-size: 12px;"></span>
+                            <button type="submit" @*class="btn btn-link"*@ style="padding: 0; border: none; background: red;">
+                                <span class="glyphicon glyphicon-trash" style="font-size: 12px; background: red;"></span>
                             </button>
                         }
                     </div>
 
-                    <div style="float: right; background: red; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right;    width: 10%; padding: 0 5px 0 5px;">
                         <a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">
-                            <span class="glyphicon glyphicon-pencil btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
+                            <span class="glyphicon glyphicon-pencil @*btn btn-link*@" style="font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
                         </a>
                     </div>
 
-                    <div style="float: right; background: red; color: #fdffff; width: 10%; padding: 0 5px 0 5px;">
+                    <div style="float: right;   width: 10%; padding: 0 5px 0 5px;">
                         <a href="@Url.Action("AddLabelToNote", "Note", new {id = Model.Id}, null)">
-                            <span class="glyphicon glyphicon-tag btn btn-link" style="color: #fdffff; font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
+                            <span class="glyphicon glyphicon-tag @*btn btn-link*@" style="font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
                         </a>
                     </div>
 

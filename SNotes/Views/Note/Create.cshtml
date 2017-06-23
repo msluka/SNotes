@@ -1,31 +1,9 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@using System.Web.Mvc.Html
+﻿@using System.Web.Mvc.Html
 @using Microsoft.AspNet.Identity
 @model SNotes.ViewModels.AddNoteViewModel
 @*@{
         ViewBag.Title = "Create";
     }*@
-
-
-
 
 <div class="row">
     <div class="col-md-3">
@@ -54,22 +32,18 @@
 
 
                 <div class="form-group">
-                    <div class="noteBox" id="noteBoxInCreateNoteView">
-                        <div class="editableDivs">
-
-
-                            @Html.TextArea("title", @Model.Title, new { @class = "form-control noteTitle", @placeholder = "Title" })
-
-
-                            @Html.TextArea("content", @Model.Content, new { @class = "form-control noteContent", @placeholder = "Text..." })
-
+                    <div class="noteBox" id="noteBoxInCreateOrEditView">
+                        
+                        <div class="editableDivs" id="editableDivsInAddOrEditNoteView">
+                            @Html.TextArea("title", @Model.Title, new {@class = "form-control", @placeholder = "Title"})
+                            @Html.TextArea("content", @Model.Content, new {@class = "form-control", @placeholder = "Text ..."})
                         </div>
 
-
-                        <div class="noteFooter" id="noteFooterInCreateNoteView" style="min-width: 100%; background: red; display: inline-block; position: absolute; bottom: 0;">
-                            <button type="submit">SAVE</button>
-                            <a id="cancelCreateNote" href="@Url.Action("NoteList", "Note", null, null)">CANCEL</a>
+                        <div class="noteFooter" id="noteFooterInCreateOrEditView" style="min-width: 100%; background: red; display: inline-block; position: absolute; bottom: 0;">
+                            <button type="submit" id="saveNote">SAVE</button>
+                            <a id="cancelCreateOrEditNote" href="@Url.Action("NoteList", "Note", null, null)">CANCEL</a>
                         </div>
+
                     </div>
                 </div>
 
@@ -81,22 +55,6 @@
     <div class="col-md-1">
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
