@@ -1,0 +1,26 @@
+﻿@model SNotes.ViewModels.AddLabelViewModel
+    
+@{
+    Layout = null;
+}
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<br/>
+<h2><i>New Label</i></h2>
+ 
+@using(Html.BeginForm("Create", "Label"))
+{ 
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+        
+    </div>
+    
+    <button type="submit" class="btn btn-success">Create</button>
+}
+
+

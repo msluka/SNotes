@@ -72,7 +72,7 @@
     
     /*scrollbar-dark-shadow-color: #C0C0C0;*/
     
-}*/
+
 
 
 
@@ -125,7 +125,10 @@
     font-size: 18px;
 }
 
-
+.expand .noteLabel {
+    position: absolute;
+    bottom: 28px;
+}
 
 
 .expand .noteFooter {
@@ -333,7 +336,7 @@ textarea {
     width: 28px;
     height: 28px;
     margin: 0 20px 0 0;
-    background: #00C853;
+    background: #28b62c;
     border-radius: 50%;
     position: relative;
     box-shadow: 3px 3px 5px gray;
@@ -528,7 +531,8 @@ textarea {
     width: 28px;
     height: 28px;
     margin: 0 20px 0 0;
-    background: #00C853;
+    /*background: #00C853;*/
+    background: #28b62c;
     border-radius: 50%;
     position: relative;
     box-shadow: 3px 3px 5px gray;
@@ -668,8 +672,71 @@ textarea {
     color: #303F9F;
 }
 
-#labelPartialTools a:hover  {
+/*Index*/
+
+.index {
+    position: relative;
+    /*background: red !important;*/
+}
+.indexWrapper {
+    
+    min-width: 350px;
+    width: 350px;
+    height: 370px;
+    position: fixed;
+    left: calc(50% - 175px);
+    top: calc(50% - 150px);
+    
+    z-index: 100;
+    
+ 
+    background: white;
+    padding: 20px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 2px 2px 0 gray, 0 3px 1px -2px gray, 0 1px 5px 0 gray;
+}
+
+.indexEmail {
+    margin-left: 15px !important;
+}
+
+.indexEmailInput {
+    margin: 0 15px 0 15px;
+
+}
+
+.indexPassword {
+    margin-left: 15px !important;
+}
+
+.indexPasswordInput {
+    margin: 0 15px 0 15px;
+}
+
+.indexLoginFormRegisterButton {
+    color: white !important;
+    padding: 10px 10px 10px 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    background: red;
+    font-size: 120%;
+    width: 350px !important;
+    text-decoration: none;
+    min-width: 250px !important;
+    position: absolute;
+    top: 0px;
+    left: 0;
+}
+
+    .indexLoginFormRegisterButton:hover {
+        text-decoration: none;
+        background: #28b62c;
+    }
+
+.checkBoxIndex {
    
+    margin-left: -37px;
 }
 
 

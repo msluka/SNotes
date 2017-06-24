@@ -1,4 +1,67 @@
-﻿@model SNotes.ViewModels.EditLabelViewModel
+﻿@using System.Web.Mvc.Html
+
+
+<div class="row">
+    <div class="col-md-3">
+
+        @{Html.RenderAction("LabelList", "Label"); }
+
+    </div>
+
+    <div class="col-md-8">
+        <div style="width: 85%">
+            @{
+                Html.RenderPartial("_editLabelPartial");
+            }
+        </div>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model SNotes.ViewModels.EditLabelViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -15,5 +78,5 @@
         </div>
     
         <button type="submit" class="btn btn-default">Submit</button>
-    }
+    }*@
 

@@ -1,0 +1,24 @@
+﻿@model SNotes.ViewModels.AddLabelToNoteViewModel
+
+@{
+    ViewBag.Title = "Add Label To Note";
+}
+
+<br />
+<h3>
+    Create a new label<br />
+    or add an existing one by writing the label name
+</h3>
+
+@using (Html.BeginForm("AddLabelToNote", "Note"))
+{
+    <div class="form-group">
+
+        @Html.TextBoxFor(m => m.LabelName, new { @class = "form-control" })
+
+    </div>
+    @Html.HiddenFor(m => m.NoteId)
+    <button type="submit" class="btn btn-success">Save</button>
+}
+
+

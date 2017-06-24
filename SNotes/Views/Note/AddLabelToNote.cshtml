@@ -1,4 +1,33 @@
-﻿@model SNotes.ViewModels.AddLabelToNoteViewModel
+﻿
+@using System.Web.Mvc.Html
+
+
+<div class="row">
+    <div class="col-md-3">
+
+        @{Html.RenderAction("LabelList", "Label"); }
+
+    </div>
+
+    <div class="col-md-8">
+        <div style="width: 85%">
+            @{
+                Html.RenderPartial("_addLabelToNotePartial");
+            }
+        </div>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+</div>
+
+
+
+
+
+
+
+@*@model SNotes.ViewModels.AddLabelToNoteViewModel
 
 @{
     ViewBag.Title = "Add Label To Note";
@@ -15,5 +44,5 @@
     </div>
     @Html.HiddenFor(m => m.NoteId)
     <button type="submit" class="btn btn-default">Submit</button>
-}
+}*@
 

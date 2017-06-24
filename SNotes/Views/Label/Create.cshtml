@@ -1,4 +1,74 @@
-﻿@model SNotes.ViewModels.AddLabelViewModel
+﻿
+@using System.Web.Mvc.Html
+
+
+<div class="row">
+    <div class="col-md-3">
+
+        @{Html.RenderAction("LabelList", "Label"); }
+
+    </div>
+
+    <div class="col-md-8">
+        <div style="width: 85%">
+            @{
+                Html.RenderPartial("_createLabelPartial");
+            }
+        </div>
+    </div>
+
+    <div class="col-md-1">
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model SNotes.ViewModels.AddLabelViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -15,5 +85,5 @@
         </div>
     
         <button type="submit" class="btn btn-default">Submit</button>
-    }
+    }*@
 

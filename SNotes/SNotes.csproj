@@ -281,7 +281,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\IndexH.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -312,6 +312,11 @@
     <Content Include="Views\Note\DisplayTemplates\NoteGridViewModel.cshtml" />
     <Content Include="Views\Note\DisplayTemplates\Label.cshtml" />
     <Content Include="Views\Shared\_noteMenuPartial.cshtml" />
+    <Content Include="Views\Shared\_createLabelPartial.cshtml" />
+    <Content Include="Views\Shared\_editLabelPartial.cshtml" />
+    <Content Include="Views\Shared\_addLabelToNotePartial.cshtml" />
+    <Content Include="Views\Shared\_myLayoutPartial.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

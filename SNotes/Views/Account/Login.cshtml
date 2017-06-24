@@ -1,4 +1,10 @@
 ﻿@using SNotes.Models
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPartial.cshtml";
+}
+
+
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
@@ -52,9 +58,9 @@
         </section>
     </div>
     <div class="col-md-4">
-        <section id="socialLoginForm">
+        @*<section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+        </section>*@
     </div>
 </div>
 

@@ -52,24 +52,24 @@
                     @if (Model.ModificationTime == Model.CreationTime || Model.ModificationTime < Model.CreationTime)
                     {
                         <text>Created</text>
-                        <br/>
+                        <br />
                         @Model.CreationTime.ToString("d MMM yyyy")
-                        <br/>
+                        <br />
                         @Model.CreationTime.ToString("HH:mm:ss")
                     }
                     else
                     {
                         <text>Last edited</text>
-                        <br/>
+                        <br />
                         @Model.ModificationTime.ToString("d MMM yyyy")
-                        <br/>
+                        <br />
                         @Model.ModificationTime.ToString("HH:mm:ss")
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
                         <text>Created</text>
-                        <br/>
+                        <br />
                         @Model.CreationTime.ToString("d MMM yyyy")
-                        <br/>
+                        <br />
                         @Model.CreationTime.ToString("HH:mm:ss")
 
                     }
@@ -87,7 +87,7 @@
 
                     <div style="float: right;   width: 10%;">
                         @*<a href="@Url.Action("Edit", "Note", new {id = Model.Id}, null)">*@
-                            <span id="info" class="glyphicon glyphicon-info-sign info" style="font-size: 14px; top: 2px; padding: 0 5px 0 5px; border: none;"></span>
+                        <span id="info" class="glyphicon glyphicon-info-sign info" style="font-size: 14px; top: 2px; padding: 0 5px 0 5px; border: none;"></span>
                         @*</a>*@
                     </div>
 
@@ -113,8 +113,6 @@
                             <span class="glyphicon glyphicon-tag @*btn btn-link*@" style="font-size: 12px; padding: 0; border-width: 0 1px 4px 1px;"></span>
                         </a>
                     </div>
-                    <div id="addLabelToNoteView"></div>
-
                 </div>
             </div>
         </div>

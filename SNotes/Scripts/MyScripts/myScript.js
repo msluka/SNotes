@@ -176,7 +176,7 @@ $(".editableDivs").on("click",
 
             $(".expand").find("textarea").css({ 'width': '100%' });
             $(".expand").find(".editableDivs").css({ 'overflow-y':'scroll' });
-
+            $(".expand").find(".noteLabel").css({ 'bottom': '28px' });
             //var editableDivsHeight = $(".expand").find(".editableDivs").outerHeight();
             //$(".expand").find(".noteContent").outerHeight(editableDivsHeight - titleHeight);
 
