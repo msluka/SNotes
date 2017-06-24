@@ -95,7 +95,9 @@
 }
 
 
-.expand > editableDivs {
+
+
+.expand > .editableDivs {
     overflow-y: scroll;
 }
 
@@ -524,7 +526,7 @@ textarea {
     color: white !important;
     font-weight: bold !important;
     text-decoration: none !important;
-    font-size: 17px !important;
+    font-size: 18px !important;
     margin: 0 0 0 6px;
     padding: 4px 0 0 0;
 }
@@ -577,11 +579,24 @@ textarea {
     opacity:0.9;
 }
 
+.noteFooter {
+    height: 22px;
+}
 
+.noteLabel {
+    position: absolute;
+    border: 22px;
+}
 
+#noteFooterInCreateOrEditView {
+    height: 26px;
+    
+}
 
+#noteFooterInCreateOrEditView button {
 
-
+    padding: 0 5px 0 0;
+}
 
 
 

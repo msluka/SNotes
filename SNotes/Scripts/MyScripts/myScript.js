@@ -166,16 +166,18 @@ $(".editableDivs").on("click",
             clone.find(".editableDivs").addClass(".expandEditableDivs");
 
             var noteBoxHeight = $(".expand").outerHeight();
-            var titleHeight = $(".expand").find(".noteTitle").outerHeight();
+            //var titleHeight = $(".expand").find(".noteTitle").outerHeight();
             var noteLabelHeight = $(".expand").find(".noteLabel").outerHeight();
             var noteFooterHeight = $(".expand").find(".noteFooter").outerHeight();
 
-            $(".expand").find(".noteLabel").css({ bottom: noteFooterHeight });
+            //$(".expand").find(".noteLabel").css({ bottom: noteFooterHeight });
 
             $(".expand").find(".editableDivs").outerHeight(noteBoxHeight - noteLabelHeight - noteFooterHeight);
 
-            var editableDivsHeight = $(".expand").find(".editableDivs").outerHeight();
-            $(".expand").find(".noteContent").outerHeight(editableDivsHeight - titleHeight);
+            $(".expand").find("textarea").css({ 'width': '100%' });
+
+            //var editableDivsHeight = $(".expand").find(".editableDivs").outerHeight();
+            //$(".expand").find(".noteContent").outerHeight(editableDivsHeight - titleHeight);
 
         };
 
@@ -189,12 +191,25 @@ $(".editableDivs").on("click",
                 $("#temporaryId, this").remove();
 
                 $(".expand").removeClass("expand");
-                $(".expandTextarea").removeClass("expandTextarea");
+                //$(".expandTextarea").removeClass("expandTextarea");
 
                 $("#temporaryId").removeAttr("id");
             }
 
         });
+
+
+        $('.expand').find(".info").hover(function () {
+          
+                $('.expand').find(".time").css('display', 'block');
+            },
+
+            function () {
+              
+                $('.expand').find(".time").css('display', 'none');
+
+        });
+
 
         $(".noteBox").click(function (event) {
 
@@ -217,6 +232,11 @@ $('.info').each(function () {
             $(this).closest(".footerIcons").siblings(".time").css('display', 'none');
         });
 });
+
+
+
+
+
 
 
 //TextAreaExpanding
