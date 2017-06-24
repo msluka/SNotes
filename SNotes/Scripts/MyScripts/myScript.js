@@ -175,11 +175,38 @@ $(".editableDivs").on("click",
             $(".expand").find(".editableDivs").outerHeight(noteBoxHeight - noteLabelHeight - noteFooterHeight);
 
             $(".expand").find("textarea").css({ 'width': '100%' });
+            $(".expand").find(".editableDivs").css({ 'overflow-y':'scroll' });
 
             //var editableDivsHeight = $(".expand").find(".editableDivs").outerHeight();
             //$(".expand").find(".noteContent").outerHeight(editableDivsHeight - titleHeight);
 
         };
+
+
+//        var cssScrollbar ={
+
+
+//        '::-webkit-scrollbar': {
+//            'width': '12px'
+//            /*display: none;*/
+//        },
+
+//        '::-webkit-scrollbar-track': {
+//            '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.3)',
+//            'border-radius': '5px'
+//        },
+
+//        '::-webkit-scrollbar-thumb': {
+//            'border-radius': '5px',
+//            '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.5)'
+
+//        }
+//}
+//        $(".expandEditableDivs").css(cssScrollbar);
+
+
+
+
 
 
         $("body").click(function (e) {

@@ -28,11 +28,11 @@
     {
         <li>
            
-            <div style="display: inline-flex;">
+            <div id="labelPartialTools"style="display: inline-flex;">
                
                 <span id="labelIconsInPartial" class="glyphicon glyphicon-tag"></span>
 
-                <a href="@Url.Action("Edit", "Label", new {id = label.Id}, null)">
+                <a href="@Url.Action("Edit", "Label", new {id = label.Id}, null)" style="text-decoration: none;">
                     <span id="editLabelInPartial" class="glyphicon glyphicon-pencil editLabelInPartial"></span>
                 </a>
 
@@ -40,7 +40,7 @@
                 {
                     <input type="hidden" name="id" value="@label.Id" id="id" style="display: none;"/>
 
-                    <button type="submit" class="btn btn-link" style="padding: 0 10px 0 5px;">
+                    <button type="submit" class="@*btn btn-link*@" style="padding: 0 10px 0 5px; border: none; background: none; outline: none;">
                         <span id="deleteLabelInPartial" class="glyphicon glyphicon-trash deleteLabelInPartial"></span>
                     </button>
                 }
