@@ -317,6 +317,7 @@
     <Content Include="Views\Shared\_addLabelToNotePartial.cshtml" />
     <Content Include="Views\Shared\_myLayoutPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_registerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

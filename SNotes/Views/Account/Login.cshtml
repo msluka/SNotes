@@ -4,6 +4,92 @@
     Layout = "~/Views/Shared/_myLayoutPartial.cshtml";
 }
 
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="indexWrapper">
+            
+    <div id="loginForm" class="@*indexLoginForm*@">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+
+            @Html.ActionLink("Join Us and Create Beautiful Notes", "Register", "Account", null, new { @class = "indexLoginFormRegisterButton" })
+                    @*<h4>Join Us and Create Beautiful Notes</h4>*@
+
+            @Html.AntiForgeryToken()
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group loginIndex">
+                        
+                <div class="indexEmail">
+                    @Html.LabelFor(m => m.Email, new {@class = "@*col-md-2 control-label*@"})
+                </div>
+                <div class="@*col-md-10*@ indexEmailInput">
+                    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="indexPassword">
+                    @Html.LabelFor(m => m.Password, new {@class = "@*col-md-2 control-label*@"})
+                </div>
+                <div class="@*col-md-10*@ indexPasswordInput">
+                    @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="checkbox checkBoxIndex">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-0 col-md-12">
+                    <input type="submit" value="Log in" class="btn btn-success" />
+                </div>
+            </div>
+            <p>
+                @Html.ActionLink("Register as a new user", "Register", "Account")
+            </p>
+                    @* Enable this once you have account confirmation enabled for password reset functionality
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>*@
+        }
+    </div>
+     
+ 
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using SNotes.Models
+
+@{
+    Layout = "~/Views/Shared/_myLayoutPartial.cshtml";
+}
+
 
 @model LoginViewModel
 @{
@@ -50,20 +136,20 @@
                 <p>
                     @Html.ActionLink("Register as a new user", "Register")
                 </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
+                Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                    </p>
             }
         </section>
     </div>
     <div class="col-md-4">
-        @*<section id="socialLoginForm">
+        <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>*@
+        </section>
     </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
