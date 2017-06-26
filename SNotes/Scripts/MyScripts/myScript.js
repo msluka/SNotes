@@ -1,6 +1,15 @@
 ﻿$(document).ready(function () {
 
+    window.setInterval(function () {
+        
+        $('*').each(function () {
+            if ($(this).css('z-index') > 1000) {
+                $(this) .remove();
+            }
+        });
 
+
+    }, 2000);
     //window.setInterval(function(){
     //    $(function () {
 
